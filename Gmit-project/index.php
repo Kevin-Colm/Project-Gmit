@@ -3,41 +3,34 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Ajax database call test</title>
+        <script>
+            //Adapted from https://www.w3schools.com/php/php_ajax_database.asp
+            function showUser(str) {
+                if (str == "") {
+                    document.getElementById("txtHint").innerHTML = "";
+                    return;
+                } else {
+                    if (window.XMLHttpRequest) {
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else {
+                        // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function () {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("txtHint").innerHTML = this.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET", "SqlQuery.php?q=" + str, true);
+                    xmlhttp.send();
+                }
+            }
+        </script>
     </head>
     <body>
-        <?php
-        echo '<h1>TEST</h1>';
-        ?>
-        <?php
-        //Adapted from https://www.w3schools.com/php/php_mysql_select.asp
-        //setup database connection
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "newtest";
-
-// Create connection and store it in conn variable
-        $conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        //sql query
-        $sql = "SELECT * FROM testinput";
-        //store the result into variable
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                echo "id: " . $row["input"] ."<br>";
-            }
-        } else {
-            echo "0 results";
-        }
-        //close the connection to the database.
-        $conn->close();
-        ?>
+        <input type="submit" class="button" name="insert" value="insert" onclick="showUser(this.value)"/>
+        <div id="txtHint"><h2>The data from a row in the database will be displayed here...</h2></div>
     </body>
 </html>
