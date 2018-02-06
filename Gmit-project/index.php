@@ -23,14 +23,14 @@
                             document.getElementById("txtHint").innerHTML = this.responseText;
                         }
                     };
-                    xmlhttp.open("GET", "SqlQuery.php?q=" + str, true);
+                    xmlhttp.open("POST", "SqlQuery.php?q=" + str, true);
                     xmlhttp.send();
                 }
             }
         </script>
     </head>
     <body>
-        <input type="submit" class="button" name="insert" value="insert" onclick="showUser(this.value)"/>
+        <input type="submit" class="button" name="insert" value="Click here" onclick="showUser(this.value)"/>
         <div id="txtHint"><h2>The data from a row in the database will be displayed here...</h2></div>
     </body>
 </html>
