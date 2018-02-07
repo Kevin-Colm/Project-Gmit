@@ -14,11 +14,13 @@
             while ($row = $result->fetch_assoc()) {
                 //disply message to user after click event.
                 echo "<h1>Data row from ajax call... </h1> <h2>" . $row["input"] ."</h2>";
+                 echo'<img src="'. $row["image"].'"/>';
             }
             //message to print out if the table is empty
         } else {
             echo "0 results";
         }
-        //close the connection to the database.
-        $conn->close();
-                
+       
+     
+       
+             
