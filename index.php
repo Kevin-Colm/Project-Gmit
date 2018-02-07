@@ -30,7 +30,7 @@
         </script>
     </head>
     <body>
-        <input type="submit" class="button" name="insert" value="Click here" onclick="showUser(this.value)"/>
+        <input type="submit" class="button" name="display" value="Click here" onclick="showUser(this.value)"/>
         <div id="txtHint"><h2>The data from a row in the database will be displayed here...</h2></div>
     </body>
 </html>
