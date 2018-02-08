@@ -1,6 +1,6 @@
 <?php
        //include the connection to the database file
-       include_once 'dbConnect.php';
+       include 'dbConnect.php';
         ?>
         <?php
         //sql query
