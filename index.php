@@ -6,6 +6,7 @@
         <title>Ajax database call test</title>
         <script>
             //Adapted from https://www.w3schools.com/php/php_ajax_database.asp
+            //test
             function showUser(str) {
                 if (str == "") {
                     document.getElementById("txtHint").innerHTML = "";
