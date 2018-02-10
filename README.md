@@ -10,7 +10,7 @@ The application has three different types of user that will interact with the sy
 3: A customer.
 
 Author's: [Kevin Gleeson](https://github.com/kevgleeson78)
-          [Colm Woodlock](https://github.com/kevgleeson78)
+          [Colm Woodlock](https://github.com/cwoodlock)
 
 Third year students at:[GMIT](http://gmit.ie) Galway
 
