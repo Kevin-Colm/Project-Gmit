@@ -1,43 +1,37 @@
 <?php
-// Include config file
-require_once 'dbConnect.php';
+//Adapted from http://codingcyber.org/simple-login-script-php-and-mysql-64/
+//https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
+session_start();
+ require('dbConnect.php');
+//3. If the form is submitted or not.
+//3.1 If the form is submitted
+if (isset($_POST['username']) and isset($_POST['password'])){
+//3.1.1 Assigning posted values to variables.
+$username = $_POST['username'];
+$password = $_POST['password'];
+//3.1.2 Checking the values are existing in the database or not
+$query = "SELECT username, password FROM `users` WHERE username='$username' and password='$password'";
  
-// Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $username_err = 'Please enter username.';
-    } else{
-        $username = trim($_POST["username"]);
-    }
-    
-    // Check if password is empty
-    if(empty(trim($_POST['password']))){
-        $password_err = 'Please enter your password.';
-    } else{
-        $password = trim($_POST['password']);
-    }
-    
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT username, password FROM users WHERE username = $username";
-        echo $sql;
-       
-        
-        
-    }
-    
-    // Close connection
-    mysqli_close($conn);
+$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+$count = mysqli_num_rows($result);
+//3.1.2 If the posted values are equal to the database values, then session will be created for the user.
+if ($count == 1){
+$_SESSION['username'] = $username;
+}else{
+//3.1.3 If the login credentials doesn't match, he will be shown with an error message.
+$fmsg = "Invalid Login Credentials.";
 }
-?>
- 
+}
+//3.1.4 if the user is logged in Greets the user with message
+if (isset($_SESSION['username'])){
+$username = $_SESSION['username'];
+//adapted from https://stackoverflow.com/questions/20649921/php-redirect-on-login
+header("Location: loggedIn.php");
+      exit;
+echo "This is the Members Area";
+echo "<a href='logout.php'>Logout</a>";
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,25 +44,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <h2>Login</h2>
-        <p>Please fill in your credentials to login.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
-                <input type="text" name="username"class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-        </form>
-    </div>    
+         <form class="form-signin" method="POST">
+        <h2 class="form-signin-heading">Please Login</h2>
+        <div class="input-group">
+	  <span class="input-group-addon" id="basic-addon1">@</span>
+	  <input type="text" name="username" class="form-control" placeholder="Username" required>
+	</div>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <a class="btn btn-lg btn-primary btn-block" href="register.php">Register</a>
+      </form>   
 </body>
 </html>
