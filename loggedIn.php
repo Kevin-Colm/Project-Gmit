@@ -1,4 +1,14 @@
 
+<?php
+ /* App Name: Gig Guide.
+  * @Author's:
+  * Kevin Gleeson
+  * Colm Woodlock
+  * Version: 1.0
+  * Date: 18/02/2017
+  *
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,18 +24,18 @@
 
             <h1>Logged in successfully</h1>
             <?php
+             //adapted from https://stackoverflow.com/questions/20649921/php-redirect-on-login
                 session_start();
-                if (isset($_SESSION['username'])) {
-                    $username = $_SESSION['username'];
-
-                    //adapted from https://stackoverflow.com/questions/20649921/php-redirect-on-login
-                    echo '<h1>Hello ' . $username . '</h1>';
-
-                    echo "<h2>This is the Members Area</h2>";
-                    include 'index.php';
-                    echo "<a href='logout.php'>Logout</a>";
-                }
+                if (isset($_SESSION['userName'])) {
+                    $username = $_SESSION['userName'];
             ?>
+                   
+                   <h1>Hello <?php $username ?></h1>
+                    <h2>This is the Members Area</h2>
+                    <?php include 'index.php';?>
+                    <a href='logout.php'>Logout</a>
+               <?php }?>
+            
         </div>
     </body>
 </html>
