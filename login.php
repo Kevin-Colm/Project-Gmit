@@ -18,21 +18,30 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
     $userName = $_POST['userName'];
     $password = $_POST['password'];
     //3.1.2 Checking the values are existing in the database or not
-    $query = "SELECT username, password FROM `users` WHERE username='$userName' and password='$password'";
+    $query = "SELECT username FROM `users` WHERE username='$userName' and password='$password'";
 
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     $count = mysqli_num_rows($result);
     echo $count;
     //3.1.2 If the posted values are equal to the database values, then session will be created for the user.
-    if ($count == 1) {
-        $_SESSION['userName'] = $userName;
-
-        header("Location: loggedIn.php");
-    } else {
+     if ($count > 0) {
+            // output data of each row.
+            //while loop to get each row
+            while ($row = $result->fetch_assoc()) {
+                 $_SESSION['userName'] = $row["username"];
+                  header("Location: loggedIn.php");
+            }
+            //message to print out if the table is empty
+        }
+   
+       else {
         //3.1.3 If the login credentials doesn't match, he will be shown with an error message.
         echo "<h1 style='color:Red;'>Invalid Username or Password.</h1>";
     }
-}
+
+       
+    } 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
