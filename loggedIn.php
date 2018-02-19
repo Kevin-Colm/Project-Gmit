@@ -30,7 +30,7 @@
                     $username = $_SESSION['userName'];
             ?>
                    
-                   <h1>Hello <?php $username ?></h1>
+                   <h1>Hello <?php echo $username ?></h1>
                     <h2>This is the Members Area</h2>
                     <?php include 'index.php';?>
                     <a href='logout.php'>Logout</a>
