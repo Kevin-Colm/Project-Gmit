@@ -11,7 +11,7 @@
 //             https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
 session_start();
 require('dbConnect.php');
-//3. If the form is submitted or not.
+
 //3.1 If the form is submitted
 if (isset($_POST['userName']) and isset($_POST['password'])) {
     //3.1.1 Assigning posted values to variables.
@@ -29,7 +29,7 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
             //while loop to get each row
             while ($row = $result->fetch_assoc()) {
                  $_SESSION['userName'] = $row["username"];
-                  header("Location: loggedIn.php");
+                 header("Location: loggedIn.php");
             }
             //message to print out if the table is empty
         }

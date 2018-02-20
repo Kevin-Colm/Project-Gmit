@@ -16,7 +16,7 @@
         //store the result into variable
         $result = $conn->query($sql);
         //check that there are rows in the table
-        if ($result->num_rows > 0) {
+        if ($result->num_rows > 0 ) {
             // output data of each row.
             //while loop to get each row
             while ($row = $result->fetch_assoc()) {
