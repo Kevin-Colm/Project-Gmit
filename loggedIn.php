@@ -28,9 +28,10 @@
                 session_start();
                 if (isset($_SESSION['userName'])) {
                     $username = $_SESSION['userName'];
+                    $id = $_SESSION['id'];
             ?>
                    
-                   <h1>Hello <?php echo $username ?></h1>
+                   <h1>Hello <?php echo $username .' ID '.$id;?></h1>
                     <h2>This is the Members Area</h2>
                     <?php include 'index.php';?>
                     <a href='logout.php'>Logout</a>

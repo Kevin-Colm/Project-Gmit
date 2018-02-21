@@ -18,7 +18,7 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
     $userName = $_POST['userName'];
     $password = $_POST['password'];
     //3.1.2 Checking the values are existing in the database or not
-    $query = "SELECT username FROM `users` WHERE username='$userName' and password='$password'";
+    $query = "SELECT username,id FROM `users` WHERE username='$userName' and password='$password'";
 
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     $count = mysqli_num_rows($result);
@@ -29,6 +29,7 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
             //while loop to get each row
             while ($row = $result->fetch_assoc()) {
                  $_SESSION['userName'] = $row["username"];
+                 $_SESSION['id'] = $row["id"];
                  header("Location: loggedIn.php");
             }
             //message to print out if the table is empty
