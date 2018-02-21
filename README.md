@@ -6,9 +6,9 @@ The application has three different types of user that will interact with the sy
 
 1: A Venu owner:
    
-   Can create a new event with a date time and price for entry.
-   They can add a band to the event by selecting from a list of registered bands if the band has registered to the system.
-   If the band has not registered the venu can add some generic information about the band for the event.
+      Can create a new event with a date time and price for entry.
+      They can add a band to the event by selecting from a list of registered bands if the band has registered to the system.
+      If the band has not registered the venu can add some generic information about the band for the event.
    
 2: A band:
 
