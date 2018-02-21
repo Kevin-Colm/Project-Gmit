@@ -11,8 +11,12 @@ The application has three different types of user that will interact with the sy
    If the band has not registered the venu can add some generic information about the band for the event.
    
 2: A band:
+
           Can register to the system with thier name, a band logo and a brief biog.
+          This information will be available to the venu for selection if they are playing at an event there.
+          
 3: A customer:
+
           Can register with the system and leave a review of the band and or venu.
           They can also leave a rating for the gig.
           
