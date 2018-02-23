@@ -14,13 +14,16 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
     $userName = $_POST['userName'];
     $password = $_POST['password'];
     
-    $query = "Insert into users (username, password) VALUES('$userName', '$password')";
-    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-        if($result){
-            echo 'User added!!';
-            header("Location: login.php");
+    $query = "SELECT * FROM users WHERE username = '$userName'";
+     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+    $count = mysqli_num_rows($result);
+        if($count > 0){
+            echo 'User exists...';
+            
         }else{
-            echo 'registration failed...';
+            $query = "Insert into users (username, password) VALUES('$userName', '$password')";
+    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+    header("Location: login.php");
         }
         }
         ?>
