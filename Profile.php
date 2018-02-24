@@ -1,43 +1,60 @@
 
 <!DOCTYPE html>
 <html>
-<body>
-<?php
-session_start();
-include 'dbConnect.php';
-                if (isset($_SESSION['userName'])) {
-                    
-                    $id = $_SESSION['id'];
-    
-                }
-                  
-           
-                                 
-                
+    <body>
+        <?php
+        //session id for user
+        session_start();
+        //Include database connection
+        include 'dbConnect.php';
+        //Check if username is assigned in the sessiion
+        if (isset($_SESSION['userName'])) {
+            //If it is set we can use the id to insert into their row in the database.
+            $id = $_SESSION['id'];
+        }
+        //Check if the submit post http request has been set
+        if (isset($_POST['submit'])) {
+            //Get name from the form
+            $name = $_POST['name'];
+            //GEt tyoe from dropdown in form
+            $type = $_POST['type'];
+            //SQL auery to check if the ID PK exists
+            $query = "SELECT * FROM users WHERE id = '$id'";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            //php function to count the matching rows in the table
+            $count = mysqli_num_rows($result);
+            //IF count is greater than 0 the pk exists so execute an updte rather than an insert.
+            if ($count > 0) {
+                $query = "UPDATE $type SET name = '$name' WHERE id=$id;";
+                mysqli_query($conn, $query) or die(mysqli_error($conn));
+                //Test output
+                echo'<h1>The id allready exists but we will update the other information</h1>';
+            } else {
+                //If there is no PK then an insert will be ok
+                $query = "insert into $type(id)VALUES('$id')";
+                mysqli_query($conn, $query) or die(mysqli_error($conn));
+                //Test output.
+                echo "You have selected :" . $type;  // Displaying Selected Value
+            }
+        }
+        ?>                
 
-if(isset($_POST['submit'])){
-
-   $type = $_POST['type'];
-           $query = "insert into $type(id)VALUES('$id')";
-
-   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-echo "You have selected :" .$type;  // Displaying Selected Value
-}
-?>                
-                
 
 
-<form  method="post">
-<select name="type">
-<option value="customer">Customer</option>
-<option value="band">Band</option>
-<option value="venue">Venue</option>
-</select>
-<input type="submit" name="submit" value="Get Selected Values" />
-</form>
+        <form  method="post">
+            <select name="type">
+                <option value="customer">Customer</option>
+                <option value="band">Band</option>
+                <option value="venue">Venue</option>
+            </select>
+            <input type="text" name="name" Value="" placeholder="Enter name">
 
-<p>Please choose a the type of user you wish to be.</p>
+            <input type="submit" name="submit" value="Submit Profile." />
 
-</body>
+        </form>
+
+        <p>Please choose a the type of user you wish to be.</p>
+
+    </body>
 </html>
 
