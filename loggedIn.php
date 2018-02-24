@@ -36,6 +36,7 @@
                     <h2>This is the Members Area</h2>
                     <?php include 'index.php';?>
                     <a href='logout.php'>Logout</a>
+                    <a href='Profile.php'>Edit Profile</a>
                <?php }?>
             
         </div>
