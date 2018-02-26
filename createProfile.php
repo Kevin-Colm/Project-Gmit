@@ -28,7 +28,7 @@
             //GEt tyoe from dropdown in form
             $type = $_POST['type'];
             //SQL auery to check if the ID PK exists
-            $query = "SELECT * FROM users WHERE id = '$id'";
+            $query = "SELECT * FROM $type WHERE id = '$id'";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             //php function to count the matching rows in the table
             $count = mysqli_num_rows($result);
@@ -37,14 +37,16 @@
                 $query = "UPDATE $type SET name = '$name' WHERE id=$id;";
                 mysqli_query($conn, $query) or die(mysqli_error($conn));
                 //Test output
-                echo'<h1>The id allready exists but we will update the other information</h1>';
-            } else {
+                echo'<h1>Profile updated.</h1>';
+            } 
+            if($count==0){
                 //If there is no PK then an insert will be ok
-                $query = "insert into $type(id)VALUES('$id')";
+                $query = "insert into $type(id,name)VALUES('$id','$name')";
                 mysqli_query($conn, $query) or die(mysqli_error($conn));
                 //Test output.
                 echo "You have selected :" . $type;  // Displaying Selected Value
             }
+            
         }
         ?>                
 
@@ -62,7 +64,7 @@
 
         </form>
 
-        <p>Please choose a the type of user you wish to be.</p>
+        <p>Please choose a the type of user.</p>
 
     </body>
 </html>
