@@ -41,10 +41,12 @@
             } 
             if($count==0){
                 //If there is no PK then an insert will be ok
-                $query = "insert into $type(id,name)VALUES('$id','$name')";
-                mysqli_query($conn, $query) or die(mysqli_error($conn));
+                $query = "insert into $type(id,name)VALUES('$id','$name');";
+                $query .= "INSERT INTO userType (type, id)VALUES('$type','$id')"; 
+                mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
                 //Test output.
                 echo "You have selected :" . $type;  // Displaying Selected Value
+             
             }
             
         }
