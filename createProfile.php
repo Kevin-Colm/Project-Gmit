@@ -34,15 +34,15 @@
             $count = mysqli_num_rows($result);
             //IF count is greater than 0 the pk exists so execute an updte rather than an insert.
             if ($count > 0) {
-                $query = "UPDATE $type SET name = '$name' WHERE id=$id;";
-                mysqli_query($conn, $query) or die(mysqli_error($conn));
+               // $query = "UPDATE $type SET name = '$name' WHERE id=$id;";
+               // mysqli_query($conn, $query) or die(mysqli_error($conn));
                 //Test output
-                echo'<h1>Profile updated.</h1>';
+                echo'<h1>This profile already exists you can update it on your page</h1>';
             } 
             if($count==0){
                 //If there is no PK then an insert will be ok
                 $query = "insert into $type(id,name)VALUES('$id','$name');";
-                $query .= "INSERT INTO userType (type, id)VALUES('$type','$id')"; 
+                $query .= "INSERT INTO userType (".$type ."Id)VALUES('$id')"; 
                 mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
                 //Test output.
                 echo "You have selected :" . $type;  // Displaying Selected Value
