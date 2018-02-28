@@ -11,7 +11,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
+DROP DATABASE gigguide;
 -- Dumping database structure for gigguide
 CREATE DATABASE IF NOT EXISTS `gigguide` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `gigguide`;
@@ -19,9 +19,9 @@ USE `gigguide`;
 -- Dumping structure for table gigguide.band
 CREATE TABLE IF NOT EXISTS `band` (
   `type` varchar(200) NOT NULL DEFAULT 'band',
-  `name` varchar(200) NOT NULL DEFAULT '""',
-  `image` varchar(200) NOT NULL DEFAULT '""',
-  `bio` varchar(2000) NOT NULL DEFAULT '""',
+  `name` varchar(200) NOT NULL DEFAULT '',
+  `image` varchar(200) NOT NULL DEFAULT '',
+  `bio` varchar(2000) NOT NULL DEFAULT '',
   `id` int(11) NOT NULL,
   KEY `Band_fk0` (`type`),
   KEY `Band_fk1` (`id`)
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `band` (
 -- Dumping data for table gigguide.band: 1 rows
 /*!40000 ALTER TABLE `band` DISABLE KEYS */;
 INSERT INTO `band` (`type`, `name`, `image`, `bio`, `id`) VALUES
-	('band', '', '""', '""', 1);
+	('band', '', '', '', 1);
 /*!40000 ALTER TABLE `band` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.customer
@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS `customer` (
 -- Dumping data for table gigguide.customer: 2 rows
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
 INSERT INTO `customer` (`type`, `name`, `image`, `review`, `rating`, `id`) VALUES
-	('customer', '', '""', '""', 0, 1),
-	('customer', '', '""', '""', 0, 2);
+	('customer', '', '', '', 0, 1),
+	('customer', '', '', '', 0, 2);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.event
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `price` float NOT NULL DEFAULT '0',
   `band` varchar(200) NOT NULL DEFAULT 'band',
   `venu` varchar(200) NOT NULL DEFAULT 'venu',
-  `description` varchar(2000) NOT NULL DEFAULT '""',
+  `description` varchar(2000) NOT NULL DEFAULT '',
   KEY `Event_fk0` (`band`),
   KEY `Event_fk1` (`venu`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -86,7 +86,7 @@ INSERT INTO `users` (`id`, `userName`, `userPassword`) VALUES
 
 -- Dumping structure for table gigguide.usertype
 CREATE TABLE IF NOT EXISTS `usertype` (
-  `type` varchar(200) NOT NULL DEFAULT '""',
+  `type` varchar(200) NOT NULL DEFAULT '',
   `id` int(11) NOT NULL,
   PRIMARY KEY (`type`),
   KEY `UserType_fk0` (`id`)
@@ -103,10 +103,10 @@ INSERT INTO `usertype` (`type`, `id`) VALUES
 -- Dumping structure for table gigguide.venue
 CREATE TABLE IF NOT EXISTS `venue` (
   `type` varchar(200) NOT NULL DEFAULT 'venu',
-  `name` varchar(200) NOT NULL DEFAULT '""',
-  `address` varchar(800) NOT NULL DEFAULT '""',
-  `image` varchar(800) NOT NULL DEFAULT '""',
-  `description` varchar(2000) NOT NULL DEFAULT '""',
+  `name` varchar(200) NOT NULL DEFAULT '',
+  `address` varchar(800) NOT NULL DEFAULT '',
+  `image` varchar(800) NOT NULL DEFAULT '',
+  `description` varchar(2000) NOT NULL DEFAULT '',
   `id` int(11) NOT NULL,
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `address` (`address`),
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `venue` (
 -- Dumping data for table gigguide.venue: 1 rows
 /*!40000 ALTER TABLE `venue` DISABLE KEYS */;
 INSERT INTO `venue` (`type`, `name`, `address`, `image`, `description`, `id`) VALUES
-	('venu', '', '""', '""', '""', 1);
+	('venu', '', '', '', '', 1);
 /*!40000 ALTER TABLE `venue` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
