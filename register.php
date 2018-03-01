@@ -22,6 +22,7 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
             
         }else{
             $query = "Insert into users (username, userPassword) VALUES('$userName', '$password')";
+            
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     header("Location: login.php");
         }
