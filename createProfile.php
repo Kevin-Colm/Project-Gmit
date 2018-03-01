@@ -57,8 +57,15 @@
                 //Test output.
                 echo "You have selected :" . $type;  // Displaying Selected Value
              
+            }else{
+                $query = "SELECT type from userType where id= '$id'";
+                $result = $conn->query($query);
+                $row = $result->fetch_assoc();
+                header("location:".$row['type'].".php");
+               
             }
         }
+        
         ?>                
 
 
