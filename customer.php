@@ -20,4 +20,4 @@ $query = "SELECT * FROM `customer` WHERE id = '$id';";
           $image = $row['image'];
     
 echo $name.'<br/>';
-echo $image.' The image will go here';
+ echo'<img src="'.$row["image"].'"width="200px"/>';
