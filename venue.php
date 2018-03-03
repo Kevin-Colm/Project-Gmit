@@ -21,4 +21,5 @@ $query = "SELECT * FROM `venue` WHERE id = '$id';";
           $image = $row['image'];
     
 echo $name.'<br/>';
- echo'<img src="'.$row["image"].'"width="200px"/>';
+ echo'<img src="'.$row["image"].'"width="200px"/>'
+         . ' <a href="logout.php">Logout</a></br>';

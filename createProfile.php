@@ -125,7 +125,7 @@
         </form>
 
         <p>Please choose a the type of user.</p>
-
+<a href='logout.php'>Logout</a></br>
     </body>
 </html>
 

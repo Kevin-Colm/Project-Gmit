@@ -20,4 +20,6 @@ $query = "SELECT * FROM `customer` WHERE id = '$id';";
           $image = $row['image'];
     
 echo $name.'<br/>';
- echo'<img src="'.$row["image"].'"width="200px"/>';
+//@ToDo If user is registered allow to update photo it can be null so need ot handle that.
+ echo'<img src="'.$row["image"].'"width="200px"/>'
+         . ' <a href="logout.php">Logout</a></br>';

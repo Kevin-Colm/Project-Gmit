@@ -51,6 +51,7 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 <!--            <a class="btn btn-lg btn-primary btn-block" href="register.php">Register</a>-->
-        </form>   
+        </form>  
+        <a href='logout.php'>Logout</a></br>
     </body>
 </html>
