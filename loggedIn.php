@@ -26,8 +26,8 @@
             <?php
              //adapted from https://stackoverflow.com/questions/20649921/php-redirect-on-login
                 session_start();
-                if (isset($_SESSION['userName'])) {
-                    $username = $_SESSION['userName'];
+                if (isset($_SESSION['username'])) {
+                    $username = $_SESSION['username'];
                     $id = $_SESSION['id'];
                     $password = $_SESSION['password'];
             ?>

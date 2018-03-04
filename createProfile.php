@@ -18,7 +18,7 @@
         include 'dbConnect.php';
 
         //Check if username is assigned in the sessiion
-        if (isset($_SESSION['userName'])) {
+        if (isset($_SESSION['username'])) {
             //If it is set we can use the id to insert into their row in the database.
             $id = $_SESSION['id'];
         }
@@ -95,7 +95,7 @@
             if ($count1 == 0) {
 
                 //If there is no PK then an insert will be ok
-                $query = "insert into $type(id,name,image)VALUES('$id','$name','$target_file ');";
+                $query = "insert into $type(id,name,image)VALUES('$id','$name','$target_file');";
                 $query .= "INSERT INTO userType (id,type)VALUES('$id','$type');";
                 mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
                 //Test output.
@@ -104,8 +104,8 @@
                 $query = "SELECT type from userType where id= '$id'";
                 $result = $conn->query($query);
                 $row = $result->fetch_assoc();
-              
-                header("location:" . $row['type'] . ".php");
+              echo $target_file;
+                //header("location:" . $row['type'] . ".php");
             }
         }
         ?>                
