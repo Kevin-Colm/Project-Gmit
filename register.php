@@ -1,33 +1,44 @@
 <?php
 /* App Name: Gig Guide.
-  * @Author's:
-  * Kevin Gleeson
-  * Colm Woodlock
-  * Version: 1.0
-  * Date: 18/02/2017
-  *
-*/
+ * @Author's:
+ * Kevin Gleeson
+ * Colm Woodlock
+ * Version: 1.0
+ * Date: 18/02/2017
+ *
+ */
 include('dbConnect.php');
 
 if (isset($_POST['userName']) and isset($_POST['password'])) {
-   
+
     $userName = $_POST['userName'];
     $password = $_POST['password'];
-    
+    //GEt tyoe from dropdown in form
+    $type = $_POST['type'];
     $query = "SELECT * FROM users WHERE username = '$userName'";
-     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-    $count = mysqli_num_rows($result);
-        if($count > 0){
-            echo 'User exists...';
-            
-        }else{
-            $query = "Insert into users (username, userPassword) VALUES('$userName', '$password')";
-            
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-    header("Location: login.php");
-        }
-        }
-        ?>
+    $count = mysqli_num_rows($result);
+    if ($count > 0) {
+        echo 'User exists...';
+    } else {
+        
+//If there is no PK then an insert will be ok
+        $query = "Insert into users (username, userPassword) VALUES('$userName', '$password')";
+       
+              
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+        $last_id = $conn->insert_id;
+          $queryType = "insert into $type(id)VALUES('$last_id');";
+                $queryType .= "INSERT INTO userType (id,type)VALUES('$last_id','$type');";
+              mysqli_multi_query($conn, $queryType) or die(mysqli_error($conn));
+                //Test output.
+                echo "You have selected :" . $type;  // Displaying Selected Value
+       header("Location: login.php");
+    }
+    
+     
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,8 +60,13 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
             </div>
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <select name="type">
+                <option value="customer">Customer</option>
+                <option value="band">Band</option>
+                <option value="venue">Venue</option>
+            </select>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-<!--            <a class="btn btn-lg btn-primary btn-block" href="register.php">Register</a>-->
+            <!--            <a class="btn btn-lg btn-primary btn-block" href="register.php">Register</a>-->
         </form>  
         <a href='logout.php'>Logout</a></br>
     </body>

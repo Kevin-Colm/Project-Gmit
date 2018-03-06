@@ -27,8 +27,7 @@
         if (isset($_POST['submit'])) {
             //Get name from the form
             $name = $_POST['name'];
-            //GEt tyoe from dropdown in form
-            $type = $_POST['type'];
+            
             $target_dir = "Images/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
@@ -74,13 +73,15 @@
             }
 
             //SQL auery to check if the ID PK exists
-            $query = "SELECT * FROM $type WHERE id = '$id'";
+            $query = "SELECT * FROM userType WHERE id = '$id'";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             //php function to count the matching rows in the table
             $count = mysqli_num_rows($result);
             //IF count is greater than 0 the pk exists so execute an updte rather than an insert.
             if ($count > 0) {
-                $query = "UPDATE $type SET name = '$name' WHERE id=$id;";
+                $row = $result->fetch_assoc();
+                $type = $row['type'];
+                $query = "UPDATE $type SET name = '$name',image = '$target_file' WHERE id=$id;";
 
                 mysqli_query($conn, $query) or die(mysqli_error($conn));
                 //Test output
@@ -93,7 +94,8 @@
             //php function to count the matching rows in the table
             $count1 = mysqli_num_rows($result1);
             if ($count1 == 0) {
-
+                $row = $result->fetch_assoc();
+                $type = $row['type'];
                 //If there is no PK then an insert will be ok
                 $query = "insert into $type(id,name,image)VALUES('$id','$name','$target_file');";
                 $query .= "INSERT INTO userType (id,type)VALUES('$id','$type');";
@@ -113,11 +115,7 @@
 
 
         <form action="" method="post" enctype = "multipart/form-data">
-            <select name="type">
-                <option value="customer">Customer</option>
-                <option value="band">Band</option>
-                <option value="venue">Venue</option>
-            </select>
+           
             <input type="text" name="name" Value="" placeholder="Enter name">
             <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" name="submit" value="Submit Profile." />
