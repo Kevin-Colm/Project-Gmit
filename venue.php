@@ -8,7 +8,7 @@
 
 session_start();
 include 'dbConnect.php';
-echo'This is the customers page<br/>';
+echo'This is the venu page<br/>';
 $id = $_SESSION['id'];
 $query = "SELECT * FROM `venue` WHERE id = '$id';";
 
