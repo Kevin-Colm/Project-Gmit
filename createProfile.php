@@ -84,8 +84,7 @@
                 $query = "UPDATE $type SET name = '$name',image = '$target_file' WHERE id=$id;";
 
                 mysqli_query($conn, $query) or die(mysqli_error($conn));
-                //Test output
-                echo'<h1>' . $id . 'his profile already exists you can update it on your page</h1>';
+               header("location:" . $row['type'] . ".php");
             }
 
             //SQL auery to check if the ID PK exists
@@ -107,7 +106,7 @@
                 $result = $conn->query($query);
                 $row = $result->fetch_assoc();
               echo $target_file;
-                //header("location:" . $row['type'] . ".php");
+                header("location:" . $row['type'] . ".php");
             }
         }
         ?>                

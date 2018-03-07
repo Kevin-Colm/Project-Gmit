@@ -27,11 +27,8 @@ CREATE TABLE IF NOT EXISTS `band` (
   CONSTRAINT `FK_band_users` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.band: ~2 rows (approximately)
+-- Dumping data for table gigguide.band: ~0 rows (approximately)
 /*!40000 ALTER TABLE `band` DISABLE KEYS */;
-INSERT INTO `band` (`id`, `name`, `image`, `bio`, `rating`) VALUES
-	(1, 'MEtallica', NULL, NULL, NULL),
-	(2, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `band` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.customer
@@ -43,11 +40,8 @@ CREATE TABLE IF NOT EXISTS `customer` (
   CONSTRAINT `FK_customer_users` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.customer: ~2 rows (approximately)
+-- Dumping data for table gigguide.customer: ~0 rows (approximately)
 /*!40000 ALTER TABLE `customer` DISABLE KEYS */;
-INSERT INTO `customer` (`id`, `name`, `image`) VALUES
-	(2, 'Jihn Jordan', 'photo'),
-	(3, 'Frank Bruno', NULL);
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.users
@@ -57,14 +51,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userPassword` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.users: ~3 rows (approximately)
+-- Dumping data for table gigguide.users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `username`, `userPassword`) VALUES
-	(1, 'kevin', '1111'),
-	(2, 'john', '2222'),
-	(3, 'frank', '1111');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.usertype
@@ -75,11 +65,8 @@ CREATE TABLE IF NOT EXISTS `usertype` (
   CONSTRAINT `FK_usertype_users` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.usertype: ~2 rows (approximately)
+-- Dumping data for table gigguide.usertype: ~0 rows (approximately)
 /*!40000 ALTER TABLE `usertype` DISABLE KEYS */;
-INSERT INTO `usertype` (`id`, `type`) VALUES
-	(NULL, NULL),
-	(NULL, NULL);
 /*!40000 ALTER TABLE `usertype` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.venue
@@ -94,11 +81,8 @@ CREATE TABLE IF NOT EXISTS `venue` (
   CONSTRAINT `FK_venue_users` FOREIGN KEY (`id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.venue: ~2 rows (approximately)
+-- Dumping data for table gigguide.venue: ~0 rows (approximately)
 /*!40000 ALTER TABLE `venue` DISABLE KEYS */;
-INSERT INTO `venue` (`id`, `name`, `address`, `image`, `description`, `rating`) VALUES
-	(2, NULL, NULL, NULL, NULL, NULL),
-	(3, '', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `venue` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
