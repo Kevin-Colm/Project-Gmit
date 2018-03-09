@@ -75,3 +75,7 @@ web1:
   php_zend_extensions:
     - opcache
     - xdebug
+
+global:
+  env:
+    - MY_VARIABLE: 'MAP:gigguide'
