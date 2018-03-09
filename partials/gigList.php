@@ -1,5 +1,5 @@
 <?php
-include'dbConnect.php';
+
 
  $query = "SELECT * FROM `event`";
 

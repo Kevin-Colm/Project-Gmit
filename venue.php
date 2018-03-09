@@ -7,7 +7,10 @@
  */
 
 session_start();
-include 'dbConnect.php';
+include 'partials/header.php';
+
+
+
 echo'This is the venu page<br/>';
 $id = $_SESSION['id'];
 $query = "SELECT * FROM `venue` WHERE id = '$id';";
@@ -23,3 +26,4 @@ $query = "SELECT * FROM `venue` WHERE id = '$id';";
 echo $name.'<br/>';
  echo'<img src="'.$row["image"].'"width="200px"/>'
          . ' <a href="logout.php">Logout</a></br>';
+ include 'partials/footer.php';

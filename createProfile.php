@@ -7,15 +7,13 @@
  * Date: 18/02/2017
  *
  */
-?>
-<!DOCTYPE html>
-<html>
-    <body>
-        <?php
+session_start();  
+include 'partials/header.php';
+
         //session id for user
-        session_start();
+   
         //Include database connection
-        include 'dbConnect.php';
+        
 
         //Check if username is assigned in the sessiion
         if (isset($_SESSION['username'])) {
@@ -113,7 +111,7 @@
 
 
 
-        <form action="" method="post" enctype = "multipart/form-data">
+        <form method="post" enctype = "multipart/form-data">
            
             <input type="text" name="name" Value="" placeholder="Enter name">
             <input type="file" name="fileToUpload" id="fileToUpload">
@@ -121,8 +119,9 @@
 
         </form>
 
-        <p>Please choose a the type of user.</p>
-<a href='logout.php'>Logout</a></br>
-    </body>
-</html>
+        
 
+
+<?php
+
+        include 'partials/footer.php';

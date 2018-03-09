@@ -7,7 +7,7 @@
  * Date: 18/02/2017
  *
  */
-include('dbConnect.php');
+include 'partials/header.php';
 
 if (isset($_POST['userName']) and isset($_POST['password'])) {
 

@@ -13,7 +13,7 @@
 //import http session
 session_start();
 //import database connection
-require('dbConnect.php');
+include 'partials/header.php';
 
 //Check if the text fields are set
 if (isset($_POST['username']) and isset($_POST['password'])) {
@@ -45,6 +45,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         echo "<h1 style='color:Red;'>Invalid Username or Password.</h1>";
     }
 }
+
 ?>
 <!--<!DOCTYPE html>
 <html lang="en">
@@ -71,18 +72,10 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         </form>   
     </body>
 </html>-->
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Login</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
+
 
         <div id="login-overlay" class="modal-dialog">
+        
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
@@ -127,7 +120,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
                 </div>
             </div>
         </div>
-    </body>
-</html>
 
 
+<?php
+include 'partials/footer.php';

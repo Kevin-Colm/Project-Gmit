@@ -6,7 +6,8 @@
  * and open the template in the editor.
  */
 session_start();
-include 'dbConnect.php';
+include'partials/header.php';
+
 echo'This is the customers page<br/>';
 $id = $_SESSION['id'];
 $query = "SELECT * FROM `customer` WHERE id = '$id';";
@@ -19,7 +20,7 @@ $query = "SELECT * FROM `customer` WHERE id = '$id';";
           $name = $row['name'];
           $image = $row['image'];
     
-echo $name.'<br/>';
+echo '<h1>'.$name.'<h1/>';
 //@ToDo If user is registered allow to update photo it can be null so need ot handle that.
- echo'<img src="'.$row["image"].'"width="200px"/>'
-         . ' <a href="logout.php">Logout</a></br>';
+ echo'<img src="'.$row["image"].'"width="200px"/>';
+        include 'partials/footer.php';
