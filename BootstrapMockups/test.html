@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style type="text/css">
+            body{ font: 14px sans-serif; }
+            .wrapper{ width: 350px; padding: 20px; }
+        </style>
+    </head>
+    <body>
+        <div id="login-overlay" class="modal-dialog">
+        
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title" id="myModalLabel">GigGuide</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="well">
+                                <form id="loginForm" method="POST"  novalidate="novalidate">
+                                    <div class="form-group">
+                                        <label for="username" class="control-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="e.g. joebloggs">
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="control-label">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password">
+                                        <span class="help-block"></span>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember" id="remember"> Remember login
+                                        </label>
+                                        <p class="help-block">(if this is a private computer)</p>
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-block">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <p class="lead">Don't have an account?<span class="text-success">Register here!</span></p>
+                            <ul class="list-unstyled" style="line-height: 2">
+                                <li><span class="fa fa-check text-success"></span> See the latest gigs in your area</li>
+                                <li><span class="fa fa-check text-success"></span> Promote your venue</li>
+                                <li><span class="fa fa-check text-success"></span> Advertise your band</li>
+                                <li><span class="fa fa-check text-success"></span> Easy to use</li>
+								
+                            </ul>
+                            <p><a href="register.php" class="btn btn-info btn-block">Register now!</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="register-overlay" class="modal-dialog">
+        
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title" id="myModalLabel">GigGuide Registration</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="well">
+							
+                                <form class="form-signin" method="POST">
+								
+                                    <div class="form-row">
+										<div class="form-group col-md-6">
+											<label for="inputUserName">Username *</label>
+											<input type="text" name="userName" class="form-control" placeholder="Username" required>
+										</div>
+									
+										<div class="form-group col-md-6">
+											<label for="inputPassword">Password *</label>
+											<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+										</div>
+									</div>
+									
+									<div class="form-group col-md-4">
+										<label for="inputState">User Type</label>
+										<select id="inputState" class="form-control">
+											<option selected>Choose...</option>
+											<option value="customer">Customer</option>
+											<option value="band">Band</option>
+											<option value="venue">Venue</option>
+										</select>
+									</div>
+                                    
+                                    <button type="submit" class="btn btn-success btn-block">Register</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+							<h3 class="dark-grey">Terms and Conditions</h3>
+							<p>
+								By clicking on "Register" you agree to The Company's' Terms and Conditions
+							</p>
+							<p>
+								While rare, prices are subject to change based on exchange rate fluctuations - 
+								should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+							</p>
+							<p>
+								Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+							</p>
+							<p>
+								Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+							</p>
+						</div>
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        

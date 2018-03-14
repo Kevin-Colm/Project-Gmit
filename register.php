@@ -53,13 +53,17 @@ if (isset($_POST['userName']) and isset($_POST['password'])) {
     </head>
     <body>
         <form class="form-signin" method="POST">
+            
             <h2 class="form-signin-heading">Please Register here</h2>
+            
             <div class="input-group">
                 <span class="input-group-addon" id="basic-addon1">@</span>
                 <input type="text" name="userName" class="form-control" placeholder="Username" required>
             </div>
+            
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            
             <select name="type">
                 <option value="customer">Customer</option>
                 <option value="band">Band</option>
