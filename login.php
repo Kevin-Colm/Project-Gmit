@@ -65,6 +65,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
                                         <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="e.g. joebloggs">
                                         <span class="help-block"></span>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label for="password" class="control-label">Password</label>
                                         <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password">
