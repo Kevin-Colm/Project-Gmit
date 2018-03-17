@@ -11,19 +11,7 @@ include 'partials/header.php';
 
 
 
-echo'This is the venu page<br/>';
-$id = $_SESSION['id'];
-$query = "SELECT * FROM `venue` WHERE id = '$id';";
 
-    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-    
-   
-   
-        $row = $result->fetch_assoc();
-          $name = $row['name'];
-          $image = $row['image'];
-    
-echo $name.'<br/>';
- echo'<img src="'.$row["image"].'"width="200px"/>'
-         . ' <a href="logout.php">Logout</a></br>';
+
+ include 'partials/profile.php';
  include 'partials/footer.php';

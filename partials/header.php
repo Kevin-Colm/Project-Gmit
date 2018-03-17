@@ -28,7 +28,7 @@ include 'dbConnect.php';
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
-<!--    <link href="css/blog-home.css" rel="stylesheet">-->
+<!--<link href="css/blog-home.css" rel="stylesheet">-->
 
   </head>
 
@@ -42,7 +42,7 @@ include 'dbConnect.php';
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto pull-right">
+          <ul class="navbar-nav ml-auto ">
             <li class="nav-item active">
               <a class="nav-link" href="home.php">Home
                 <span class="sr-only">(current)</span>
