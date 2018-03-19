@@ -1,0 +1,64 @@
+<?php
+session_start();
+include 'partials/header.php';
+
+
+ //Check if username is assigned in the sessiion
+        if (isset($_SESSION['username'])) {
+            //If it is set we can use the id to insert into their row in the database.
+            $id = $_SESSION['id'];
+        }
+        
+                    if (isset($_POST["description"])) {
+                
+                        $description = $_POST['description'];
+                        $date = $_POST['date'];
+                        $name = $_POST['title'];
+            //SQL auery to check if the ID PK exists
+            $query = "SELECT * FROM userType WHERE id = '$id'";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            //php function to count the matching rows in the table
+            $count = mysqli_num_rows($result);
+            //IF count is greater than 0 the pk exists so execute an updte rather than an insert.
+            if ($count > 0) {
+               
+               
+                $query = "insert into event (venueId,description,date,name)values('$id','$description','$date','$name')";
+
+              $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            }
+
+           
+            }
+        
+?>
+
+<form method="POST">
+    <div class="form-group">
+        
+    <label for="event-title">Evnet Title</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Example input">
+  
+    </div>
+  <div class="form-group">
+    <label for="event-description">Event Description</label>
+    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+  </div>
+    <div class="form-group">
+        <label for="event-date">Event Date</label>
+     <input type="datetime-local" id="date" name="date">
+    </div>
+     <div class="form-group">
+        <label for="event-band">Select Band</label>
+     <select name="bands">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+        <button type="submit">Add Event</button>
+    </div>
+</form>
+ 
+<?php
+include 'partials/footer.php';

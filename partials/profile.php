@@ -7,8 +7,6 @@ $id = $_SESSION['id'];
 $query = "SELECT type FROM `usertype` WHERE id = '$id';";
 
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-    
-   
    
         $row = $result->fetch_assoc();
         $type = $row['type'];

@@ -8,10 +8,5 @@
 
 session_start();
 include 'partials/header.php';
-
-
-
-
-
  include 'partials/profile.php';
  include 'partials/footer.php';
