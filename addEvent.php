@@ -51,11 +51,19 @@ include 'partials/header.php';
      <div class="form-group">
         <label for="event-band">Select Band</label>
      <select name="bands">
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="fiat">Fiat</option>
-    <option value="audi">Audi</option>
-  </select>
+        <?php 
+        $query = "SELECT * FROM `band`";
+
+    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        while ($row = $result->fetch_assoc()) {
+            $name = $row['name'];
+            
+            
+        echo "<option value='" . $name . "'>" . $name . "</option>";
+        }
+        ?>
+    </select>
+  
         <button type="submit">Add Event</button>
     </div>
 </form>

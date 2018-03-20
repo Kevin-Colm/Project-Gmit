@@ -7,13 +7,14 @@
         while ($row = $result->fetch_assoc()) {
             $desc = $row['description'];
             $date = $row['date'];
+            $name = $row['name'];
             ?>
            <!-- Blog Post -->
           <div class="card mb-4">
            
             <div class="card-body">
                 
-              <h2 class="card-title">Post Title</h2>
+              <h2 class="card-title"><?php echo $name ?></h2>
               <img class="float-right" src="http://placehold.it/200x200" alt="Card image cap">
               <p class="card-text"><?php echo $desc ?></p>
               
