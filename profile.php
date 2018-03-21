@@ -6,10 +6,12 @@
  * and open the template in the editor.
  */
 
-
-//echo'This is the customers page<br/>';
+//session_start();
+//include'partials/header.php';
+//
+//echo'This is the band page<br/>';
 //$id = $_SESSION['id'];
-//$query = "SELECT * FROM `customer` WHERE id = '$id';";
+//$query = "SELECT * FROM `band` WHERE id = '$id';";
 //
 //    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 //    
@@ -22,9 +24,8 @@
 //echo '<h1>'.$name.'<h1/>';
 ////@ToDo If user is registered allow to update photo it can be null so need ot handle that.
 // echo'<img src="'.$row["image"].'"width="200px"/>';
-
+//        include 'partials/footer.php';
 session_start();
 include 'partials/header.php';
- include 'partials/profile.php';
+ include 'partials/profilePartial.php';
  include 'partials/footer.php';
-       

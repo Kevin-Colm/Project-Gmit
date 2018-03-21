@@ -59,11 +59,9 @@ include 'dbConnect.php';
                    ?>
                 <a class="nav-link" href="logout.php">Logout</a>
                 </li>
+           
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo $row['type']?>.php">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><?php echo $userName?></a>
+              <a class="nav-link" href="Profile.php"><?php echo $userName?></a>
             </li>
                 <?php
               }

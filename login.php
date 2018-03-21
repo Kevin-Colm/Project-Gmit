@@ -44,7 +44,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
                 $result = $conn->query($query);
                 $row = $result->fetch_assoc();
               echo $target_file;
-                header("location:" . $row['type'] . ".php");
+                header("location: profile.php");
         //message to print out if the table is empty (No users)
     } else {
         //3.1.3 If the login credentials doesn't match, he will be shown with an error message.
