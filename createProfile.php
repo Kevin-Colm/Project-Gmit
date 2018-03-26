@@ -104,7 +104,7 @@ include 'partials/header.php';
                 $result = $conn->query($query);
                 $row = $result->fetch_assoc();
               echo $target_file;
-                header("location:" . $row['type'] . ".php");
+                header("location: profile.php");
             }
         }
         ?>                

@@ -17,7 +17,7 @@ DROP DATABASE IF EXISTS `gigguide`;
 CREATE DATABASE IF NOT EXISTS `gigguide` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `gigguide`;
 
--- Dumping structure for table gigguide.band
+-- Dumping structure for table gig`event`guide.band
 DROP TABLE IF EXISTS `band`;
 CREATE TABLE IF NOT EXISTS `band` (
   `id` int(11) NOT NULL,

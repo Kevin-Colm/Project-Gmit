@@ -14,7 +14,8 @@
            
             <div class="card-body">
                 
-              <h2 class="card-title"><?php echo $name ?></h2>
+              <h2 class="card-title">Event: <?php echo $name ?></h2>
+              <h2 class="card-title">Band: <?php echo $name ?></h2>
               <img class="float-right" src="http://placehold.it/200x200" alt="Card image cap">
               <p class="card-text"><?php echo $desc ?></p>
               
