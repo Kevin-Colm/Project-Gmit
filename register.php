@@ -8,7 +8,7 @@
  *
  */
 include 'partials/header.php';
-
+include 'partials/home_hero.php';
 if (isset($_POST['userName']) and isset($_POST['password'])) {
 
     $userName = $_POST['userName'];

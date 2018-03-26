@@ -14,6 +14,7 @@ include 'partials/header.php';
                         $description = $_POST['description'];
                         $date = $_POST['date'];
                         $name = $_POST['title'];
+                        $bandId= $_POST['bands'];
             //SQL auery to check if the ID PK exists
             $query = "SELECT * FROM userType WHERE id = '$id'";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -23,7 +24,7 @@ include 'partials/header.php';
             if ($count > 0) {
                
                
-                $query = "insert into event (venueId,description,date,name)values('$id','$description','$date','$name')";
+                $query = "insert into event (venueId,description,date,name,bandId)values('$id','$description','$date','$name','$bandId')";
 
               $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             }
@@ -57,9 +58,9 @@ include 'partials/header.php';
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         while ($row = $result->fetch_assoc()) {
             $name = $row['name'];
+            $bandId = $row['id'];
             
-            
-        echo "<option value='" . $name . "'>" . $name . "</option>";
+        echo "<option value='" . $bandId . "'>" . $name . "</option>";
         }
         ?>
     </select>

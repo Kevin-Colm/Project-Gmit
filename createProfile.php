@@ -27,6 +27,8 @@ include 'dbConnect.php';
             $name = $_POST['name'];
             $bio = $_POST['bio'];
             $target_dir = "Images/";
+            $address  = $_POST['address'];
+            
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -43,7 +45,7 @@ include 'dbConnect.php';
             }
 // Check if file already exists
             if (file_exists($target_file)) {
-                echo "Sorry, file already exists.";
+                
                 $uploadOk = 0;
             }
 // Check file size
@@ -79,6 +81,10 @@ include 'dbConnect.php';
             if ($count > 0) {
                 $row = $result->fetch_assoc();
                 $type = $row['type'];
+                if($type == 'venue'){
+                    $query = "UPDATE $type SET name = '$name',image = '$target_file',bio = '$bio', address='$address' WHERE id=$id;";
+                    mysqli_query($conn, $query) or die(mysqli_error($conn));
+                }
                 $query = "UPDATE $type SET name = '$name',image = '$target_file',bio = '$bio' WHERE id=$id;";
 
                 mysqli_query($conn, $query) or die(mysqli_error($conn));

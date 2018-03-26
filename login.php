@@ -14,7 +14,7 @@
 session_start();
 //import database connection
 include 'partials/header.php';
-
+include 'partials/home_hero.php';
 //Check if the text fields are set
 if (isset($_POST['username']) and isset($_POST['password'])) {
     //Place the form data into variables to put into database.

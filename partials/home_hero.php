@@ -9,4 +9,3 @@
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
 </div>
-<div class="col-md-8">

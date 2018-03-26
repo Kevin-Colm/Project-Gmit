@@ -27,5 +27,6 @@
 //        include 'partials/footer.php';
 session_start();
 include 'partials/header.php';
+include 'partials/home_hero.php';
  include 'partials/profilePartial.php';
  include 'partials/footer.php';
