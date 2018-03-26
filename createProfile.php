@@ -8,7 +8,7 @@
  *
  */
 session_start();  
-include 'partials/header.php';
+include 'dbConnect.php';
 
         //session id for user
    
@@ -25,7 +25,7 @@ include 'partials/header.php';
         if (isset($_POST['submit'])) {
             //Get name from the form
             $name = $_POST['name'];
-            
+            $bio = $_POST['bio'];
             $target_dir = "Images/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
@@ -79,49 +79,24 @@ include 'partials/header.php';
             if ($count > 0) {
                 $row = $result->fetch_assoc();
                 $type = $row['type'];
-                $query = "UPDATE $type SET name = '$name',image = '$target_file' WHERE id=$id;";
+                $query = "UPDATE $type SET name = '$name',image = '$target_file',bio = '$bio' WHERE id=$id;";
 
                 mysqli_query($conn, $query) or die(mysqli_error($conn));
-               header("location:" . $row['type'] . ".php");
-            }
-
-            //SQL auery to check if the ID PK exists
-            $query1 = "SELECT * FROM userType WHERE id = '$id'";
-            $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
-            //php function to count the matching rows in the table
-            $count1 = mysqli_num_rows($result1);
-            if ($count1 == 0) {
-                $row = $result->fetch_assoc();
-                $type = $row['type'];
-                //If there is no PK then an insert will be ok
-                $query = "insert into $type(id,name,image)VALUES('$id','$name','$target_file');";
-                $query .= "INSERT INTO userType (id,type)VALUES('$id','$type');";
-                mysqli_multi_query($conn, $query) or die(mysqli_error($conn));
-                //Test output.
-                echo "You have selected :" . $type;  // Displaying Selected Value
-            } else {
-                $query = "SELECT type from userType where id= '$id'";
-                $result = $conn->query($query);
-                $row = $result->fetch_assoc();
-              echo $target_file;
                 header("location: profile.php");
             }
+
         }
-        ?>                
+                     
 
 
 
-        <form method="post" enctype = "multipart/form-data">
-           
-            <input type="text" name="name" Value="" placeholder="Enter name">
-            <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" name="submit" value="Submit Profile." />
+       
 
-        </form>
-
+     
+            
         
 
 
-<?php
 
-        include 'partials/footer.php';
+
+      

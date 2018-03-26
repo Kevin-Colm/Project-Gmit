@@ -91,12 +91,7 @@
                     <li>
                       <a href="createProfile.php">Update Profile</a>
                     </li>
-                    <li>
-                      <a href="#">HTML</a>
-                    </li>
-                    <li>
-                      <a href="#">Freebies</a>
-                    </li>
+                   
                   </ul>
                 </div>
             
