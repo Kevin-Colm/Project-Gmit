@@ -19,10 +19,10 @@ INNER JOIN band ON event.bandId = band.id;
           <div class="card mb-4">
            
             <div class="card-body">
-                
+                <img class="card-img-top" src="<?php echo $image ?>" alt="Card image cap">
               <h2 class="card-title">Event: <?php echo $name ?></h2>
               <h2 class="card-title">Band: <?php echo $name ?></h2>
-              <img class="card-img-top" src="<?php echo $image ?>" alt="Card image cap">
+              
               <p class="card-text"><?php echo $desc ?></p>
               
               <a href="#" class="btn btn-primary">Read More &rarr;</a>
