@@ -84,7 +84,7 @@ include 'dbConnect.php';
                 if($type == 'venue'){
                     $query = "UPDATE $type SET name = '$name',image = '$target_file',bio = '$bio', address='$address' WHERE id=$id;";
                     mysqli_query($conn, $query) or die(mysqli_error($conn));
-                }
+                }else
                 $query = "UPDATE $type SET name = '$name',image = '$target_file',bio = '$bio' WHERE id=$id;";
 
                 mysqli_query($conn, $query) or die(mysqli_error($conn));

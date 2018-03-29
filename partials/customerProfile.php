@@ -14,7 +14,7 @@
                 $row = $result->fetch_assoc();
                 $name = $row['name'];
                 $img = $row['image'];
-
+                $bio = $row['bio'];
                 mysqli_query($conn, $query) or die(mysqli_error($conn));
               
             }
@@ -49,7 +49,7 @@
           <hr>
 
           <!-- Post Content -->
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+          <p class="lead"><?php echo $bio ?></p>
 
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
 
