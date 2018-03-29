@@ -4,7 +4,7 @@
 //INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
 //INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
 
- $query = "SELECT venue.name as venueName, venue.id, band.image , event.description, event.name, event.date
+ $query = "SELECT venue.name as venueName,band.image,band.name as bandName, event.description,event.id, event.name, event.date,event.venueId,event.bandId
 FROM ((event
 INNER JOIN band ON event.bandId = band.id)
 INNER JOIN venue ON event.venueId = venue.id);
@@ -19,7 +19,10 @@ INNER JOIN venue ON event.venueId = venue.id);
             $name = $row['name'];
             $venueName = $row['venueName'];
             $image = $row['image'];
-            $id = $row['id'];
+            $venueId = $row['venueId'];
+            $bandId = $row['bandId'];
+            $bandName = $row['bandName'];
+            $eventId= $row['id'];
             ?>
            <!-- Blog Post -->
           <div class="card mb-4">
@@ -27,17 +30,17 @@ INNER JOIN venue ON event.venueId = venue.id);
             <div class="card-body">
                 <img class="card-img-top" src="<?php echo $image ?>" alt="Card image cap">
               <h2 class="card-title">Event: <?php echo $name ?></h2>
-              <h2 class="card-title">Band: <?php echo $name ?></h2>
+              <a href="singleProfile.php?id=<?php echo $bandId ?>"><h2 class="card-title"><?php echo $bandName ?></h2></a>
               
               <p class="card-text"><?php echo $desc ?></p>
               
-              <a href="#" class="btn btn-primary">Read More &rarr;</a>
+              <a href="singleEvent.php?id=<?php echo $eventId ?>" class="btn btn-primary">Read More &rarr;</a>
               
             </div>
               
             <div class="card-footer text-muted">
               Posted on <?php echo $date ?> by
-              <a href=" singleProfile.php?id=<?php echo $id ?>"><?php echo $venueName ?></a>
+              <a href=" singleProfile.php?id=<?php echo $venueId ?>"><?php echo $venueName ?></a>
               
             </div>
           </div>
