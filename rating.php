@@ -1,33 +1,5 @@
-
- <?php 
- include 'partials/header.php';
- 
- 
- if (isset($_POST['submit'])) {
-
-$rating = $_POST['rating'];  //  Displaying Selected Value
-
- 
-       echo $rating;
-       
-        $query = "insert into ratings(id,rating) values(36,$rating)";
-
-    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-   
-        
-}
-$query = "select round(avg(rating),2) as avg from ratings where id = 36";
- 
- $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
- $row = $result->fetch_assoc();
- $avg = $row['avg'];
- 
- echo $avg;
-?>
-  
-
-       <style>
-            .wrapper {
+<style>
+    .wrapper {
                 padding: 20px;
                 margin: 100px auto;
                 width: 400px;
@@ -69,12 +41,43 @@ $query = "select round(avg(rating),2) as avg from ratings where id = 36";
             .rating:not(:hover) > :checked ~ label:before{
                 opacity: 1;
             }
+</style>
+ <?php 
 
-        </style>
+
+ 
+ if (isset($_POST['submit'])) {
+
+$rating = $_POST['rating'];  //  Displaying Selected Value
+
+ 
+    
+       
+        $query = "insert into ratings(id,rating) values(36,$rating)";
+
+    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+   
+        
+}
+$query = "select round(avg(rating),2) as avg from ratings where id = 36";
+ 
+ $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+ $row = $result->fetch_assoc();
+ $avg = $row['avg'];
+ 
+
+?>
+  
+
+      
         
 
     
-        <div class="wrapper">
+         <!-- Sidebar Widgets Column -->
+      <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Side Widget</h5>
+            <div class="card-body">
             <form method="post">
             <span class="rating" >
                 <input id="rating5" type="radio" name="rating" value="5" >
@@ -93,9 +96,11 @@ $query = "select round(avg(rating),2) as avg from ratings where id = 36";
          
             <input type="submit" name="submit" Value="Post Rating" />
             </form>
+            </div>
+          </div>
+
+            
            
-        </div>
+       
         
- <?php
- 
- include 'partials/footer.php';
+

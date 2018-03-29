@@ -1,4 +1,5 @@
 <?php
+ include 'partials/home_hero.php';
 //get sesssino id for access to tables pk.
 //$id = $_SESSION['id'];
 //get the type of registered user to innput customised content to their page.
@@ -23,34 +24,59 @@ where $id = event.id;
             $bandId = $row['bandId'];
             $bandName = $row['bandName'];
             ?>
-    <!-- Post Content Column -->
+   
+
+      <!-- Post Content Column -->
         <div class="col-lg-8">
 
           <!-- Title -->
-          <h1 class="mt-4"><?php echo $venueName ?></h1>
-           <hr>
-          <h2 class="mt-4"><?php echo $bandName ?></h2>
-           <hr>
-           <!-- Post Content -->
-          <p class="lead"><?php echo $desc ?></p>
+          <h1 class="mt-4"><?php echo $name ?></h1>
+
+          <!-- Author -->
+          <p class="lead">
+            by
+            <a href="#"><?php echo $venueName ?></a>
+          </p>
 
           <hr>
 
           <!-- Date/Time -->
           <p><?php echo $date ?></p>
 
-         
+          <hr>
 
           <!-- Preview Image -->
           <img class="img-fluid rounded" src="<?php echo $image ?>" alt="">
 
           <hr>
 
-        
+          <!-- Post Content -->
+          <p class="lead"><?php echo $desc ?></p>
 
          
           <hr>
 
          
-        </div>
+
         
+
+     
+
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+              <?php 
+        $userId = $_SESSION['id'];
+        
+        $query1 = "SELECT * FROM userType WHERE id = '$userId'";
+            $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
+            $row1 = $result1->fetch_assoc();
+            $type = $row1['type'];
+        if($type == 'customer'){
+            include 'rating.php';
+        }
+        ?>
+        </div>
+       

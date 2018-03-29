@@ -79,10 +79,10 @@
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
-         
+          
 
           <!-- Categories Widget -->
-          <div class="card my-4">
+<!--          <div class="card my-4">
             <h5 class="card-header">Categories</h5>
             <div class="card-body">
               <div class="row">
@@ -91,20 +91,27 @@
                     <li>
                       <a href="createProfile.php">Update Profile</a>
                     </li>
-                   
+                    
                   </ul>
                 </div>
             
               </div>
             </div>
-          </div>
-
-          <!-- Side Widget -->
-          <div class="card my-4">
-            <h5 class="card-header">Side Widget</h5>
+          </div>-->
+ <div class="card my-4">
+            <h5 class="card-header">Update Profile:</h5>
             <div class="card-body">
-              You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+              <form method="post" action="createProfile.php" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="name" Value="" placeholder="Enter name">
+                    <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+                    <textarea class="form-control" rows="3" name="bio"></textarea>
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+              </form>
             </div>
           </div>
-
+         
+              <?php include 'rating.php'; ?>
+        
         </div>
