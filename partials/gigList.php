@@ -4,7 +4,7 @@
 //INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
 //INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
 
- $query = "SELECT venue.id, band.image , event.description, event.name, event.date
+ $query = "SELECT venue.name as venueName, venue.id, band.image , event.description, event.name, event.date
 FROM ((event
 INNER JOIN band ON event.bandId = band.id)
 INNER JOIN venue ON event.venueId = venue.id);
@@ -17,7 +17,9 @@ INNER JOIN venue ON event.venueId = venue.id);
             $desc = $row['description'];
             $date = $row['date'];
             $name = $row['name'];
+            $venueName = $row['venueName'];
             $image = $row['image'];
+            $id = $row['id'];
             ?>
            <!-- Blog Post -->
           <div class="card mb-4">
@@ -35,7 +37,7 @@ INNER JOIN venue ON event.venueId = venue.id);
               
             <div class="card-footer text-muted">
               Posted on <?php echo $date ?> by
-              <a href="#">Start Bootstrap</a>
+              <a href=" singleProfile.php?id=<?php echo $id ?>"><?php echo $venueName ?></a>
               
             </div>
           </div>

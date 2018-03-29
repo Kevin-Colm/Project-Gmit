@@ -2,8 +2,8 @@
 //get sesssino id for access to tables pk.
 //$id = $_SESSION['id'];
 //get the type of registered user to innput customised content to their page.
-
-$query = "SELECT type FROM `usertype` WHERE id = 36;";
+$id = $_GET['id'];
+$query = "SELECT type FROM `usertype` WHERE id = '$id';";
 
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
    
@@ -11,7 +11,7 @@ $query = "SELECT type FROM `usertype` WHERE id = 36;";
         $type = $row['type'];
         
        
-$query1 = "SELECT * FROM `$type` WHERE id = 36;";
+$query1 = "SELECT * FROM `$type` WHERE id = '$id';";
 
     $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
    
