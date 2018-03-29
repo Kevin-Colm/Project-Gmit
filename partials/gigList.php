@@ -1,9 +1,13 @@
 <?php
+//SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
+//FROM ((Orders
+//INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+//INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
 
-
- $query = "SELECT band.image , event.description, event.name, event.date
-FROM event
-INNER JOIN band ON event.bandId = band.id;
+ $query = "SELECT venue.id, band.image , event.description, event.name, event.date
+FROM ((event
+INNER JOIN band ON event.bandId = band.id)
+INNER JOIN venue ON event.venueId = venue.id);
 ";
  ?>
 <div class="col-md-8">
