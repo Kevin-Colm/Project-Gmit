@@ -112,6 +112,6 @@
             </div>
           </div>
          
-              <?php include 'rating.php'; ?>
+             
         
         </div>
