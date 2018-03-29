@@ -22,9 +22,10 @@ $query1 = "SELECT * FROM `$type` WHERE id = 36;";
         $rating = $row1['rating'];
        ?>
 
-<h1><?php echo $name; ?></h1>
-        <image src="<?php echo $image; ?>"></image>
-        echo $bio;
-        echo $rating;
+<?php echo'<h2>'. $name.'</h2>';
+echo '<h2>'. $bio.'</h2>';
+        echo '<h2>'. $rating.'</h2>';?>
+        <image src="<?php echo $image; ?>" alt="img"/>
+        
         
 

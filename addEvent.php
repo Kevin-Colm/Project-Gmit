@@ -15,7 +15,7 @@ include 'partials/header.php';
                         $date = $_POST['date'];
                         $name = $_POST['title'];
                         $bandId= $_POST['bands'];
-            //SQL auery to check if the ID PK exists
+            //SQL query to check if the ID PK exists
             $query = "SELECT * FROM userType WHERE id = '$id'";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             //php function to count the matching rows in the table
