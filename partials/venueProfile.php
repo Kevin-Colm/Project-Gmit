@@ -20,7 +20,24 @@
               
             }
 
-        
+        $query1 = "SELECT rating from ratings where id = $id";
+ $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
+ $row = $result->fetch_assoc();
+
+$rt = $row['rating'];
+
+$image="";
+$i=1;
+while($i<=$rt){
+$image=$image."<img class=img-fluid roundedsrc=Images/star-on-big.png >";
+$i=$i+1;
+}
+while($i<=5){
+$image=$image."<img class=img-fluid rounded src=Images/star-on-big.png >";
+$i=$i+1;
+}
+
+
 
 ?>
 <!-- Post Content Column -->
@@ -44,7 +61,7 @@
 
           <!-- Preview Image -->
           <img class="img-fluid rounded" src="<?php echo $img ?>" alt="">
-
+<?php echo $image ?>
           <hr>
 
           <!-- Post Content -->
