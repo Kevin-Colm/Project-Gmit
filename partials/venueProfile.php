@@ -16,19 +16,19 @@
                 $name = $row['name'];
                 $img = $row['image'];
                 $bio = $row['bio'];
+                $rating = $row['rating'];
                 mysqli_query($conn, $query) or die(mysqli_error($conn));
               
             }
 
-        $query1 = "SELECT rating from venue where id = $id";
- $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
- $row = $result->fetch_assoc();
+  
 
 
 
 
 
 ?>
+
 <!-- Post Content Column -->
         <div class="col-lg-8">
 
@@ -40,10 +40,9 @@
             by
             <a href="#"><?php echo $name ?></a>
           </p>
-<span class="stars">4.8618164</span>
-<span class="stars">2.6545344</span>
-<span class="stars">0.5355</span>
-<span class="stars">8</span>
+          <h2>Rating: <?php echo $rating ?></h2>
+<span class="stars"><?php echo $rating ?></span>
+
           <hr>
 
           <!-- Date/Time -->

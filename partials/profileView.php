@@ -36,7 +36,8 @@
         by
         <a href="#"><?php echo $name ?></a>
     </p>
-
+    <h2>Rating: <?php echo $rating ?></h2>
+<span class="stars"><?php echo $rating ?></span>
     <hr>
 
     <!-- Date/Time -->
