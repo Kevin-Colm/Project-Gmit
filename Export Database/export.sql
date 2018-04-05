@@ -27,8 +27,15 @@ CREATE TABLE IF NOT EXISTS `band` (
   CONSTRAINT `FK_band_users` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.band: ~0 rows (approximately)
+-- Dumping data for table gigguide.band: ~6 rows (approximately)
 /*!40000 ALTER TABLE `band` DISABLE KEYS */;
+INSERT INTO `band` (`id`, `name`, `image`, `bio`, `rating`) VALUES
+	(59, 'Prince', 'Images/prince.jpg', 'This the artist page for prince', NULL),
+	(60, 'Christy Moore', 'Images/christy_moore.jpg', 'This is the Christy Moore artist Page', NULL),
+	(61, 'Bob Marley', 'Images/bob-marley.jpg', 'This is the Bob Marley Artist page', NULL),
+	(62, 'James Brown', 'Images/james-brown.jpg', 'This is the  James Brown Artist page', NULL),
+	(64, 'Janice Joplin', 'Images/janis-joplin.jpg', 'This is the Janice Joplin Artist Page', NULL),
+	(65, 'The Police', 'Images/police.jpg', 'This Is the Police Artist Page', 3.67);
 /*!40000 ALTER TABLE `band` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.customer
@@ -72,10 +79,12 @@ CREATE TABLE IF NOT EXISTS `event` (
   KEY `FK_event_band` (`bandId`),
   CONSTRAINT `FK_event_band` FOREIGN KEY (`bandId`) REFERENCES `band` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_event_venue` FOREIGN KEY (`venueId`) REFERENCES `venue` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table gigguide.event: ~0 rows (approximately)
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
+INSERT INTO `event` (`venueId`, `rateVenue`, `rateBand`, `review`, `description`, `id`, `date`, `bandId`, `name`) VALUES
+	(55, NULL, NULL, NULL, 'The Police will be Playing live at Vicar Street Dublin.', 1, '2018-04-25', 65, 'The Police Live at Vicar Street');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.ratings
@@ -86,8 +95,15 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   CONSTRAINT `FK_ratings_usertype` FOREIGN KEY (`id`) REFERENCES `usertype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.ratings: ~0 rows (approximately)
+-- Dumping data for table gigguide.ratings: ~6 rows (approximately)
 /*!40000 ALTER TABLE `ratings` DISABLE KEYS */;
+INSERT INTO `ratings` (`rating`, `id`) VALUES
+	(5, 55),
+	(5, 65),
+	(4, 65),
+	(4, 55),
+	(2, 65),
+	(3, 55);
 /*!40000 ALTER TABLE `ratings` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.users
@@ -97,9 +113,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userPassword` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.users: ~14 rows (approximately)
+-- Dumping data for table gigguide.users: ~18 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `userPassword`) VALUES
 	(45, 'kevin', '1111'),
@@ -115,7 +131,13 @@ INSERT INTO `users` (`id`, `username`, `userPassword`) VALUES
 	(55, 'vicar', '1111'),
 	(56, 'three', '1111'),
 	(57, 'rosin', '1111'),
-	(58, 'Monroes', '1111');
+	(58, 'Monroes', '1111'),
+	(59, 'prince', '1111'),
+	(60, 'christy', '1111'),
+	(61, 'bob', '1111'),
+	(62, 'james', '1111'),
+	(64, 'janice', '1111'),
+	(65, 'police', '1111');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.usertype
@@ -126,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `usertype` (
   CONSTRAINT `FK_usertype_users` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.usertype: ~14 rows (approximately)
+-- Dumping data for table gigguide.usertype: ~18 rows (approximately)
 /*!40000 ALTER TABLE `usertype` DISABLE KEYS */;
 INSERT INTO `usertype` (`id`, `type`) VALUES
 	(45, 'customer'),
@@ -142,7 +164,13 @@ INSERT INTO `usertype` (`id`, `type`) VALUES
 	(55, 'venue'),
 	(56, 'venue'),
 	(57, 'venue'),
-	(58, 'venue');
+	(58, 'venue'),
+	(59, 'band'),
+	(60, 'band'),
+	(61, 'band'),
+	(62, 'band'),
+	(64, 'band'),
+	(65, 'band');
 /*!40000 ALTER TABLE `usertype` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.venue
@@ -160,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `venue` (
 -- Dumping data for table gigguide.venue: ~4 rows (approximately)
 /*!40000 ALTER TABLE `venue` DISABLE KEYS */;
 INSERT INTO `venue` (`id`, `name`, `address`, `image`, `bio`, `rating`) VALUES
-	(55, 'Vicar Street', '49 Thomas Street Dublin 8.', 'Images/vicar.jpg', 'Vicar Street is a venue in Dublin Ireland.', NULL),
+	(55, 'Vicar Street', '49 Thomas Street Dublin 8.', 'Images/vicar.jpg', 'Vicar Street is a venue in Dublin Ireland.', 4),
 	(56, 'Three Arena', 'No1 Docklands Dublin.', 'Images/3arena.jpg', 'Three arena is the biggest venue in Dublin.', NULL),
 	(57, 'Rosin Doubh', 'Somewhere in Galway city.', 'Images/Roisin_Dubh.jpg', 'The Rosin Doubh is one of the finest venues in Ireland.', NULL),
 	(58, 'Monroes', 'Galway City', 'Images/Monroes.jpg', 'Monroes is one of the finest places in Galway to see a Live Show.', NULL);
