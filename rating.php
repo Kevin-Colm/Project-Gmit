@@ -93,7 +93,7 @@ if (isset($_POST['rateBand'])) {
     $row = $result1->fetch_assoc();
    
     $bandId = $row['bandId'];
-    $query = "insert into ratings(id,rating) values($bandId,$rating)";
+    $query = "insert into ratings(id,rating,userId) values($bandId,$rating,$id)";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     $query2 = "select round(avg(rating),2) as avg from ratings where id = $bandId";
 
@@ -140,7 +140,7 @@ if (isset($_POST['rateVenue'])) {
     $row = $result1->fetch_assoc();
     $venueid = $row['venueId'];
     
-    $query = "insert into ratings(id,rating) values($venueid,$rating)";
+    $query = "insert into ratings(id,rating,userId) values($venueid,$rating,$userId)";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     $query2 = "select round(avg(rating),2) as avg from ratings where id = $venueId";
 
