@@ -1,85 +1,3 @@
-<style>
-    
-     .wrapper {
-        padding: 20px;
-        margin: 100px auto;
-        width: 400px;
-        min-height: 200px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0,0,0,.1);
-        background-color: #fff;
-    }
-    .rating{
-        overflow: hidden;
-        vertical-align: bottom;
-        display: inline-block;
-        width: auto;
-        height: 30px;
-    }
-    .rating > input{
-        opacity: 0;
-        margin-right: -100%;
-    }
-    .rating > label{
-        position: relative;
-        display: block;
-        float: right;
-        background: url('Images/star-off-big.png');
-        background-size: 30px 30px;
-    }
-    .rating > label:before{
-        display: block;
-        opacity: 0;
-        content: '';
-        width: 30px;
-        height: 30px;
-        background: url('Images/star-on-big.png');
-        background-size: 30px 30px;
-        transition: opacity 0.2s linear;
-    }
-    .rating > label:hover:before,
-    .rating > label:hover ~ label:before,
-    .rating:not(:hover) > :checked ~ label:before{
-        opacity: 1;
-    }
-    
-    
-    
-    
-    .ratings{
-        overflow: hidden;
-        vertical-align: bottom;
-        display: inline-block;
-        width: auto;
-        height: 30px;
-    }
-    .ratings > input{
-        opacity: 0;
-        margin-right: -100%;
-    }
-    .ratings > label{
-        position: relative;
-        display: block;
-        float: right;
-        background: url('Images/star-off-big.png');
-        background-size: 30px 30px;
-    }
-    .ratings > label:before{
-        display: block;
-        opacity: 0;
-        content: '';
-        width: 30px;
-        height: 30px;
-        background: url('Images/star-on-big.png');
-        background-size: 30px 30px;
-        transition: opacity 0.2s linear;
-    }
-    .ratings > label:hover:before,
-    .ratings > label:hover ~ label:before,
-    .ratings:not(:hover) > :checked ~ label:before{
-        opacity: 1;
-    }
-</style>
 
 <?php
 $eventId = $_GET['id'];
@@ -93,7 +11,14 @@ if (isset($_POST['rateBand'])) {
     $row = $result1->fetch_assoc();
    
     $bandId = $row['bandId'];
-    $query = "insert into ratings(id,rating,userId) values($bandId,$rating,$id)";
+    $query4 = "select userId from ratings where userId= $userId and id = $bandId";
+    $result4 = mysqli_query($conn, $query4) or die(mysqli_error($conn));
+    $num_rows = mysqli_num_rows($result4);
+
+    if ($num_rows > 0) {
+        echo '<script>alert("You have already voted for this band");</script>';
+    } else {
+    $query = "insert into ratings(id,rating,userId) values($bandId,$rating,$userId)";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     $query2 = "select round(avg(rating),2) as avg from ratings where id = $bandId";
 
@@ -103,6 +28,8 @@ if (isset($_POST['rateBand'])) {
 
     $query3 = "update band set rating=$avg where id = $bandId";
     mysqli_query($conn, $query3) or die(mysqli_error($conn));
+    }
+   
 }
 ?>
 <!-- Sidebar Widgets Column -->
@@ -131,6 +58,8 @@ if (isset($_POST['rateBand'])) {
     </div>
 </div>
 <?php
+
+
 if (isset($_POST['rateVenue'])) {
 
     $rating = $_POST['ratings'];  //  Displaying Selected Value
@@ -140,6 +69,13 @@ if (isset($_POST['rateVenue'])) {
     $row = $result1->fetch_assoc();
     $venueid = $row['venueId'];
     
+    $query4 = "select userId from ratings where userId= $userId and id = $venueid";
+    $result4 = mysqli_query($conn, $query4) or die(mysqli_error($conn));
+    $num_rows = mysqli_num_rows($result4);
+
+    if ($num_rows > 0) {
+        echo '<script>alert("You have already voted for this venue");</script>';
+    } else {
     $query = "insert into ratings(id,rating,userId) values($venueid,$rating,$userId)";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     $query2 = "select round(avg(rating),2) as avg from ratings where id = $venueId";
@@ -150,6 +86,8 @@ if (isset($_POST['rateVenue'])) {
 
     $query3 = "update venue set rating=$avg where id = $venueId";
     mysqli_query($conn, $query3) or die(mysqli_error($conn));
+    }
+   
 }
 ?>
 
