@@ -30,6 +30,9 @@ include 'dbConnect.php';
     <!-- Custom styles for this template -->
     <link href="css/BGImage.css" rel="stylesheet" type="text/css"/>
     
+    <!--Added a favicon for the website this is the little logo showin on the tab --> 
+    <link rel="shortcut icon" type="image/png" href="./Images/favicon.png"/>
+
 
   </head>
 
