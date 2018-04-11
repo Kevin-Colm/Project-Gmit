@@ -30,12 +30,12 @@ CREATE TABLE IF NOT EXISTS `band` (
 -- Dumping data for table gigguide.band: ~6 rows (approximately)
 /*!40000 ALTER TABLE `band` DISABLE KEYS */;
 INSERT INTO `band` (`id`, `name`, `image`, `bio`, `rating`) VALUES
-	(59, 'Prince', 'Images/prince.jpg', 'This the artist page for prince', NULL),
-	(60, 'Christy Moore', 'Images/christy_moore.jpg', 'This is the Christy Moore artist Page', NULL),
-	(61, 'Bob Marley', 'Images/bob-marley.jpg', 'This is the Bob Marley Artist page', NULL),
+	(59, 'Prince', 'Images/prince.jpg', 'This the artist page for prince', 4.5),
+	(60, 'Christy Moore', 'Images/christy_moore.jpg', 'This is the Christy Moore artist Page', 3),
+	(61, 'Bob Marley', 'Images/bob-marley.jpg', 'This is the Bob Marley Artist page', 5),
 	(62, 'James Brown', 'Images/james-brown.jpg', 'This is the  James Brown Artist page', NULL),
 	(64, 'Janice Joplin', 'Images/janis-joplin.jpg', 'This is the Janice Joplin Artist Page', NULL),
-	(65, 'The Police', 'Images/police.jpg', 'This Is the Police Artist Page', 3.67);
+	(65, 'The Police', 'Images/police.jpg', 'This Is the Police Artist Page', 4);
 /*!40000 ALTER TABLE `band` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.customer
@@ -60,7 +60,8 @@ INSERT INTO `customer` (`id`, `bio`, `name`, `image`) VALUES
 	(51, 'Hello My Name is Francis.', 'Francis Black', 'Images/random-user_imageF12.jpg'),
 	(52, 'Hello My name is Rory', 'Rory Magin', 'Images/random-user_imageM29.jpg'),
 	(53, 'Hello My name is Bridey.', 'Bridey Murphy', 'Images/random-user_imageF9.jpg'),
-	(54, 'Hi My name is Jannett.', 'Jannett Conlan', 'Images/random-user_imageF16.jpg');
+	(54, 'Hi My name is Jannett.', 'Jannett Conlan', 'Images/random-user_imageF16.jpg'),
+	(66, 'My name is Patrick Viera. I once played against Roy Keane and lost.', 'Patrick Viera', 'Images/random-user_imageM40.jpg');
 /*!40000 ALTER TABLE `customer` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.event
@@ -79,31 +80,44 @@ CREATE TABLE IF NOT EXISTS `event` (
   KEY `FK_event_band` (`bandId`),
   CONSTRAINT `FK_event_band` FOREIGN KEY (`bandId`) REFERENCES `band` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_event_venue` FOREIGN KEY (`venueId`) REFERENCES `venue` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.event: ~0 rows (approximately)
+-- Dumping data for table gigguide.event: ~3 rows (approximately)
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
 INSERT INTO `event` (`venueId`, `rateVenue`, `rateBand`, `review`, `description`, `id`, `date`, `bandId`, `name`) VALUES
-	(55, NULL, NULL, NULL, 'The Police will be Playing live at Vicar Street Dublin.', 1, '2018-04-25', 65, 'The Police Live at Vicar Street');
+	(55, NULL, NULL, NULL, 'Bob Marley is Live fro One Night only', 2, '2018-04-02', 61, 'Bob Marley Live at Vicar Street'),
+	(55, NULL, NULL, NULL, 'Prince back from the dead for one night only.', 3, '2018-04-06', 59, 'Prince live at vivar street'),
+	(56, NULL, NULL, NULL, 'James Brown is Back', 4, '2018-05-23', 62, 'James Brown Live'),
+	(55, NULL, NULL, NULL, 'Chirtsy more live ', 5, '2018-04-03', 60, 'Christey more');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.ratings
 CREATE TABLE IF NOT EXISTS `ratings` (
   `rating` double DEFAULT NULL,
   `id` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `eventId` int(11) DEFAULT NULL,
   KEY `id` (`id`),
-  CONSTRAINT `FK_ratings_usertype` FOREIGN KEY (`id`) REFERENCES `usertype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `userId` (`userId`),
+  KEY `eventId` (`eventId`),
+  CONSTRAINT `FK_ratings_event` FOREIGN KEY (`eventId`) REFERENCES `event` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ratings_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_ratings_usertype` FOREIGN KEY (`id`) REFERENCES `usertype` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table gigguide.ratings: ~6 rows (approximately)
 /*!40000 ALTER TABLE `ratings` DISABLE KEYS */;
-INSERT INTO `ratings` (`rating`, `id`) VALUES
-	(5, 55),
-	(5, 65),
-	(4, 65),
-	(4, 55),
-	(2, 65),
-	(3, 55);
+INSERT INTO `ratings` (`rating`, `id`, `userId`, `eventId`) VALUES
+	(5, 59, 52, 3),
+	(5, 61, 52, 2),
+	(5, 55, 52, 2),
+	(1, 55, 52, 3),
+	(3, 60, 52, 5),
+	(4, 55, 52, 5),
+	(5, 61, 53, 2),
+	(4, 55, 53, 2),
+	(4, 59, 53, 3),
+	(3, 55, 53, 3);
 /*!40000 ALTER TABLE `ratings` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.users
@@ -113,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `userPassword` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table gigguide.users: ~18 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
@@ -137,7 +151,8 @@ INSERT INTO `users` (`id`, `username`, `userPassword`) VALUES
 	(61, 'bob', '1111'),
 	(62, 'james', '1111'),
 	(64, 'janice', '1111'),
-	(65, 'police', '1111');
+	(65, 'police', '1111'),
+	(66, 'patrick', '1111');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.usertype
@@ -170,7 +185,8 @@ INSERT INTO `usertype` (`id`, `type`) VALUES
 	(61, 'band'),
 	(62, 'band'),
 	(64, 'band'),
-	(65, 'band');
+	(65, 'band'),
+	(66, 'customer');
 /*!40000 ALTER TABLE `usertype` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.venue
@@ -188,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `venue` (
 -- Dumping data for table gigguide.venue: ~4 rows (approximately)
 /*!40000 ALTER TABLE `venue` DISABLE KEYS */;
 INSERT INTO `venue` (`id`, `name`, `address`, `image`, `bio`, `rating`) VALUES
-	(55, 'Vicar Street', '49 Thomas Street Dublin 8.', 'Images/vicar.jpg', 'Vicar Street is a venue in Dublin Ireland.', 4),
+	(55, 'Vicar Street', '49 Thomas Street Dublin 8.', 'Images/vicar.jpg', 'Vicar Street is a venue in Dublin Ireland.', 3.4),
 	(56, 'Three Arena', 'No1 Docklands Dublin.', 'Images/3arena.jpg', 'Three arena is the biggest venue in Dublin.', NULL),
 	(57, 'Rosin Doubh', 'Somewhere in Galway city.', 'Images/Roisin_Dubh.jpg', 'The Rosin Doubh is one of the finest venues in Ireland.', NULL),
 	(58, 'Monroes', 'Galway City', 'Images/Monroes.jpg', 'Monroes is one of the finest places in Galway to see a Live Show.', NULL);
