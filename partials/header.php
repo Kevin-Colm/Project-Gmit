@@ -53,6 +53,9 @@ include 'dbConnect.php';
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="pastEvent.php">Past Events</a>
+            </li>
+            <li class="nav-item">
               <?php  if(!(isset($_SESSION['username']))){
                ?>
                 <a class="nav-link" href="login.php">Login/Register</a>
@@ -67,6 +70,7 @@ include 'dbConnect.php';
             <li class="nav-item">
               <a class="nav-link" href="Profile.php"><?php echo $userName?></a>
             </li>
+            
                 <?php
               }
                 

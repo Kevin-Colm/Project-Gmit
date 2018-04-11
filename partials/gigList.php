@@ -9,8 +9,12 @@ FROM ((event
 INNER JOIN band ON event.bandId = band.id)
 INNER JOIN venue ON event.venueId = venue.id);
 ";
+ 
  ?>
+
+     
 <div class="col-md-8">
+   <h2>Upcoming Gigs</h2>
     <?php
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         while ($row = $result->fetch_assoc()) {
@@ -23,9 +27,12 @@ INNER JOIN venue ON event.venueId = venue.id);
             $bandId = $row['bandId'];
             $bandName = $row['bandName'];
             $eventId= $row['id'];
+            $dateCheck = new DateTime($row['date']);
+$now = new DateTime();
+
+if($dateCheck > $now) {
             ?>
-     
-           <!-- Blog Post -->
+                 <!-- Blog Post -->
           <div class="card mb-4">
            
             <div class="card-body">
@@ -58,7 +65,8 @@ INNER JOIN venue ON event.venueId = venue.id);
               
           </div>
            
-      <?php  }?>
+      <?php  }
+        }?>
 </div>
 <div class="col-md-4">
 
@@ -66,17 +74,18 @@ INNER JOIN venue ON event.venueId = venue.id);
          
 
           <!-- Side Widget -->
+          <h2>Ranking</h2>
           <div class="card my-4">
             <h5 class="card-header">Top 3 Bands</h5>
             <div class="card-body">
-                <?php include 'partials/topThree.php'; ?>
+                <?php include 'partials/topThreeBand.php'; ?>
             </div>
           </div>
            <!-- Side Widget -->
           <div class="card my-4">
             <h5 class="card-header">Top 3 Venues</h5>
             <div class="card-body">
-                <?php include 'partials/topThree.php'; ?>
+                <?php include 'partials/topThreeVenue.php'; ?>
             </div>
           </div>
 
