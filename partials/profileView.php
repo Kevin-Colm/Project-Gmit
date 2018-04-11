@@ -60,4 +60,28 @@
 </div>
 
 
+<div class="col-md-4">
+
+         
+         
+<?php $query2 = "SELECT * from event where ". $type . "Id = $id;";
+         $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
+ 
+        ?>
+          <!-- Side Widget -->
+          <h2>Gigs</h2>
+          <div class="card my-4">
+            <h5 class="card-header">Artist Shows</h5>
+            <div class="card-body">
+                <ul style='list-style-type: none'>
+                  <?php  while ($row2 = $result2->fetch_assoc()) {
+                        $name1 = $row2['name'];?>
+                    <li> <?php echo $name1 ?></li>
+                  <?php }?>
+                </ul>
+            </div>
+          </div>
+          
+
+        </div>
 
