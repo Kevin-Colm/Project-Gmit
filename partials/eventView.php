@@ -68,6 +68,7 @@ where $id = event.id;
         <div class="col-md-4">
 
               <?php 
+              if (isset($_SESSION['id'])) {
         $userId = $_SESSION['id'];
         
         $query1 = "SELECT * FROM userType WHERE id = '$userId'";
@@ -77,6 +78,7 @@ where $id = event.id;
         if($type == 'customer'){
             include 'rating.php';
         }
+              }
         ?>
         </div>
        

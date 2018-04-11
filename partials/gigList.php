@@ -24,12 +24,19 @@ INNER JOIN venue ON event.venueId = venue.id);
             $bandName = $row['bandName'];
             $eventId= $row['id'];
             ?>
+     
            <!-- Blog Post -->
           <div class="card mb-4">
            
             <div class="card-body">
-                <img class="card-img-top" src="<?php echo $image ?>" alt="Card image cap">
-              <h2 class="card-title">Event: <?php echo $name ?></h2>
+                <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="<?php echo $image ?>" alt="">
+          </a>
+        </div>
+        <div class="col-md-5">
+         <h2 class="card-title">Event: <?php echo $name ?></h2>
               <a href="singleProfile.php?id=<?php echo $bandId ?>"><h2 class="card-title"><?php echo $bandName ?></h2></a>
               
               <p class="card-text"><?php echo $desc ?></p>
@@ -43,6 +50,12 @@ INNER JOIN venue ON event.venueId = venue.id);
               <a href=" singleProfile.php?id=<?php echo $venueId ?>"><?php echo $venueName ?></a>
               
             </div>
+        </div>
+      </div>
+      <!-- /.row -->
+
+                
+              
           </div>
            
       <?php  }?>
