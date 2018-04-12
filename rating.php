@@ -1,5 +1,16 @@
 
 <?php
+
+/* App Name: Gig Guide.
+ * @Author's:
+ * Kevin Gleeson
+ * Colm Woodlock
+ * Version: 1.0
+ * Date: 18/02/2017
+ *
+ */
+
+
   $eventId = $_GET['id'];
 $query = "select * from event where id = $eventId";
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));

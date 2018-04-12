@@ -1,9 +1,20 @@
 <?php
+/* App Name: Gig Guide.
+ * @Author's:
+ * Kevin Gleeson
+ * Colm Woodlock
+ * Version: 1.0
+ * Date: 18/02/2017
+ *
+ */
+
+//include the top banner to the page
  include 'partials/home_hero.php';
 //get sesssino id for access to tables pk.
 //$id = $_SESSION['id'];
 //get the type of registered user to innput customised content to their page.
 $id = $_GET['id'];
+//Inner join to get the data from the tables venue, band and event
 $query = "SELECT venue.name as venueName,band.image,band.name as bandName, event.description, event.name, event.date,event.venueId,event.bandId
 FROM ((event
 INNER JOIN band ON event.bandId = band.id)
@@ -67,18 +78,22 @@ where $id = event.id;
         <!-- Sidebar Widgets Column -->
         <div class="col-md-4">
 
-              <?php 
-              if (isset($_SESSION['id'])) {
-        $userId = $_SESSION['id'];
-        
-        $query1 = "SELECT * FROM userType WHERE id = '$userId'";
+        <?php 
+            //check if the user is logged in
+            if (isset($_SESSION['id'])) {
+            //set the user id to the session id
+            $userId = $_SESSION['id'];
+            // Get the row from the usertype table matchin the session userId.
+            $query1 = "SELECT * FROM userType WHERE id = '$userId'";
             $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
             $row1 = $result1->fetch_assoc();
             $type = $row1['type'];
-        if($type == 'customer'){
-            include 'rating.php';
-        }
-              }
+
+                if($type == 'customer'){
+                    //Only a customer can post a rating
+                    include 'rating.php';
+                }
+            }
         ?>
         </div>
        

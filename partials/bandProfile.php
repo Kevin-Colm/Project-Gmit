@@ -1,4 +1,15 @@
 <?php
+
+/* App Name: Gig Guide.
+ * @Author's:
+ * Kevin Gleeson
+ * Colm Woodlock
+ * Version: 1.0
+ * Date: 18/02/2017
+ *
+ */
+
+
  //Check if username is assigned in the sessiion
         if (isset($_SESSION['username'])) {
             //If it is set we can use the id to insert into their row in the database.

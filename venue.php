@@ -1,9 +1,11 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* App Name: Gig Guide.
+ * @Author's:
+ * Kevin Gleeson
+ * Colm Woodlock
+ * Version: 1.0
+ * Date: 18/02/2017
+ *
  */
 
 session_start();

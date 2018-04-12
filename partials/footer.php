@@ -1,4 +1,14 @@
-    </div>
+<!--/* 
+*  App Name: Gig Guide.
+ * @Author's:
+ * Kevin Gleeson
+ * Colm Woodlock
+ * Version: 1.0
+ * Date: 18/02/2017
+ *
+ */   -->
+
+</div>
       <!-- /.row -->
 
     </div>
@@ -19,6 +29,8 @@
 <script  src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 <script>
+    
+    //Function to get the value of the stars selected by the user.
     $.fn.stars = function() {
     return $(this).each(function() {
         // Get the value
