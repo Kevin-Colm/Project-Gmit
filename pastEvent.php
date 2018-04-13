@@ -36,38 +36,47 @@ $now = new DateTime();
 
 if($dateCheck < $now) {
             ?>
-                 <!-- Blog Post -->
-          <div class="card mb-4">
-           
-            <div class="card-body">
-                <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="<?php echo $image ?>" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-         <h2 class="card-title">Event: <?php echo $name ?></h2>
-              <a href="singleProfile.php?id=<?php echo $bandId ?>"><h2 class="card-title"><?php echo $bandName ?></h2></a>
-              
-              <p class="card-text"><?php echo $desc ?></p>
-              
-              <a href="singleEvent.php?id=<?php echo $eventId ?>" class="btn btn-primary">Read More &rarr;</a>
-              
-            </div>
-              
-            <div class="card-footer text-muted">
-              Posted on <?php echo $date ?> by
-              <a href=" singleProfile.php?id=<?php echo $venueId ?>"><?php echo $venueName ?></a>
-              
-            </div>
-        </div>
-      </div>
-      <!-- /.row -->
+         <!-- Blog Post -->
+            <div class="card mb-4">
 
-                
-              
-          </div>
+                <div class="card-body">
+                    
+                   
+  <div class="card-footer text-muted">
+                                    <h4>Date: <?php echo $date ?></h4> 
+                    <h5>Live At: <a href=" singleProfile.php?id=<?php echo $venueId ?>"><?php echo $venueName ?></a></h5>
+                        </div>
+                      
+                    <div class="row">
+                      
+                        <div class="col-md-7">
+                    
+                            <a href="#">
+                                <img class="img-fluid rounded mb-3 mb-md-0" src="<?php echo $image ?>" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <h2 class="card-title"><?php echo $name ?></h2>
+                          
+
+                            <p class="card-text"><?php echo $desc ?></p>
+
+                            <a href="singleEvent.php?id=<?php echo $eventId ?>" class="btn btn-primary">Read More &rarr;</a>
+
+                        </div>
+                        
+                       
+                    </div>
+                    <div class="card-footer text-muted">
+                            
+                              <a href="singleProfile.php?id=<?php echo $bandId ?>"><?php echo $bandName ?></a>
+                        </div>
+                </div>
+                <!-- /.row -->
+
+
+
+            </div>
            
       <?php  }
         }?>

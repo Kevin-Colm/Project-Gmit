@@ -43,7 +43,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
          $query = "SELECT type from userType where id= '$id'";
                 $result = $conn->query($query);
                 $row = $result->fetch_assoc();
-              echo $target_file;
+              
                 header("location: profile.php");
         //message to print out if the table is empty (No users)
     } else {
