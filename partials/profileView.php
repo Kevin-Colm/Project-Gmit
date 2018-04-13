@@ -1,5 +1,14 @@
 <?php
-//get sesssino id for access to tables pk.
+/* App Name: Gig Guide.
+     * @Author's:
+     * Kevin Gleeson
+     * Colm Woodlock
+     * Version: 1.0
+     * Date: 18/02/2017
+     *
+     */
+
+//get sesssion id for access to tables pk.
 //$id = $_SESSION['id'];
 //get the type of registered user to innput customised content to their page.
 $id = $_GET['id'];
@@ -59,20 +68,13 @@ $rating = $row1['rating'];
 
 <div class="col-md-4">
     <?php
-    /* App Name: Gig Guide.
-     * @Author's:
-     * Kevin Gleeson
-     * Colm Woodlock
-     * Version: 1.0
-     * Date: 18/02/2017
-     *
-     */
+    
 
     //TEst to try and get the venues or bands palying in the individual user page.
-    $query2 = "SELECT venue.name as venueName,band.image,band.name as bandName, event.description,event.id, event.name, event.date,event.venueId,event.bandId
+    $query2 = "SELECT venue.name as venueName,venue.image,band.name as bandName, event.description,event.id, event.name, event.date,event.venueId,event.bandId
     FROM ((event
     INNER JOIN band ON event.bandId = band.id)
-    INNER JOIN venue ON event.venueId = venue.id);
+    INNER JOIN venue ON event.venueId = venue.id)where band.id = $id;
     ";
     $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
     ?>

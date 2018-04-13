@@ -33,7 +33,7 @@ if ($count > 0) {
 <div class="col-lg-8">
 
     <!-- Title -->
-    <h1 class="mt-4">Venue Profile</h1>
+    <h1 class="mt-4">Personal Profile Page</h1>
 
     <!-- Author -->
     <p class="lead">
