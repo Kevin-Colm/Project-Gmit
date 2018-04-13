@@ -74,7 +74,7 @@ $rating = $row1['rating'];
     $query2 = "SELECT venue.name as venueName,venue.image,band.name as bandName, event.description,event.id, event.name, event.date,event.venueId,event.bandId
     FROM ((event
     INNER JOIN band ON event.bandId = band.id)
-    INNER JOIN venue ON event.venueId = venue.id)where band.id = $id;
+    INNER JOIN venue ON event.venueId = venue.id)where ". $type . "id = $id;
     ";
     $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
     ?>
@@ -86,9 +86,21 @@ $rating = $row1['rating'];
             <ul style='list-style-type: none'>
                 <?php
                 while ($row2 = $result2->fetch_assoc()) {
-                    $name1 = $row2['name'];
+                    $date = $row2['date'];
+                    $eventId = $row2['id'];
+                    $venueName = $row2['venueName'];
+                    $bandName = $row2['bandName'];
                     ?>
-                    <li> <?php echo $name1 ?></li>
+              
+                    <li> <?php 
+                      if($type=="band"){
+                          echo '<a href="singleEvent.php?id='.$eventId.'">'.$date." @".$venueName.'</a>';
+                                 }else{
+                                     echo '<a href="singleEvent.php?id='.$eventId.'">'.$date." @".$bandName.'</a>';
+                        } 
+                        ?></li>
+                        
+                    
                 <?php } ?>
             </ul>
         </div>
