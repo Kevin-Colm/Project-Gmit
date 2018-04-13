@@ -98,7 +98,7 @@ if($date < $now) {
         $query5 = "select userId from ratings where userId= $userId and id = $venueid and eventId = $eventId";
         $result5 = mysqli_query($conn, $query5) or die(mysqli_error($conn));
         $num_rows1 = mysqli_num_rows($result5);
-        echo $num_rows1;
+       
         if ($num_rows1 > 0) {
             echo '<script>alert("You have already voted for this venue");</script>';
         } else {
@@ -151,6 +151,9 @@ if($date < $now) {
         </div>
     </div>
 
+   
 
+
+    
 <?php
 }
