@@ -13,6 +13,7 @@
 
 
 -- Dumping database structure for gigguide
+DROP DATABASE IF EXISTS `gigguide`;
 CREATE DATABASE IF NOT EXISTS `gigguide` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `gigguide`;
 
@@ -30,9 +31,9 @@ CREATE TABLE IF NOT EXISTS `band` (
 -- Dumping data for table gigguide.band: ~6 rows (approximately)
 /*!40000 ALTER TABLE `band` DISABLE KEYS */;
 INSERT INTO `band` (`id`, `name`, `image`, `bio`, `rating`) VALUES
-	(59, 'Prince', 'Images/prince.jpg', 'This the artist page for prince', 4.33),
-	(60, 'Christy Moore', 'Images/christy_moore.jpg', 'This is the Christy Moore artist Page', 3.5),
-	(61, 'Bob Marley', 'Images/bob-marley.jpg', 'This is the Bob Marley Artist page', 4.75),
+	(59, 'Prince', 'Images/prince.jpg', 'This the artist page for prince', 4.25),
+	(60, 'Christy Moore', 'Images/christy_moore.jpg', 'This is the Christy Moore artist Page', 3.67),
+	(61, 'Bob Marley', 'Images/bob-marley.jpg', 'This is the Bob Marley Artist page', 4.5),
 	(62, 'James Brown', 'Images/james-brown.jpg', 'This is the  James Brown Artist page', NULL),
 	(64, 'Janice Joplin', 'Images/janis-joplin.jpg', 'This is the Janice Joplin Artist Page', NULL),
 	(65, 'The Police', 'Images/police.jpg', 'This Is the Police Artist Page', 4);
@@ -78,7 +79,6 @@ CREATE TABLE IF NOT EXISTS `event` (
   KEY `FK_event_band` (`bandId`),
   KEY `FK_event_users` (`userId`),
   CONSTRAINT `FK_event_band` FOREIGN KEY (`bandId`) REFERENCES `band` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_event_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
   CONSTRAINT `FK_event_venue` FOREIGN KEY (`venueId`) REFERENCES `venue` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
@@ -91,7 +91,8 @@ INSERT INTO `event` (`venueId`, `userId`, `description`, `id`, `date`, `bandId`,
 	(55, NULL, 'Chirtsy more live ', 5, '2018-04-03', 60, 'Christey more'),
 	(57, NULL, 'Janice is live from the Rosin Doubh.', 6, '2018-04-25', 64, 'Janice Joplin Live'),
 	(67, NULL, 'thdfa', 7, '2018-04-19', 65, 'the police live'),
-	(58, NULL, 'Bob Marley is live tonight in Monroes of Galway.', 8, '2018-04-13', 61, 'Bob Marley Live tonight');
+	(58, NULL, 'Bob Marley is live tonight in Monroes of Galway.', 8, '2018-04-13', 61, 'Bob Marley Live tonight'),
+	(55, NULL, '', 9, '2018-04-19', 64, '');
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.ratings
@@ -108,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `ratings` (
   CONSTRAINT `FK_ratings_usertype` FOREIGN KEY (`id`) REFERENCES `usertype` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table gigguide.ratings: ~18 rows (approximately)
+-- Dumping data for table gigguide.ratings: ~25 rows (approximately)
 /*!40000 ALTER TABLE `ratings` DISABLE KEYS */;
 INSERT INTO `ratings` (`rating`, `id`, `userId`, `eventId`) VALUES
 	(5, 59, 52, 3),
@@ -128,7 +129,15 @@ INSERT INTO `ratings` (`rating`, `id`, `userId`, `eventId`) VALUES
 	(4, 60, 46, 5),
 	(1, 55, 46, 5),
 	(5, 61, 52, 8),
-	(5, 58, 52, 8);
+	(5, 58, 52, 8),
+	(4, 61, 66, 2),
+	(5, 55, 66, 2),
+	(4, 59, 66, 3),
+	(4, 55, 66, 3),
+	(4, 60, 66, 5),
+	(5, 55, 66, 5),
+	(4, 61, 66, 8),
+	(5, 58, 66, 8);
 /*!40000 ALTER TABLE `ratings` ENABLE KEYS */;
 
 -- Dumping structure for table gigguide.users
@@ -217,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `venue` (
 -- Dumping data for table gigguide.venue: ~4 rows (approximately)
 /*!40000 ALTER TABLE `venue` DISABLE KEYS */;
 INSERT INTO `venue` (`id`, `name`, `address`, `image`, `bio`, `rating`) VALUES
-	(55, 'Vicar Street', '49 Thomas Street Dublin 8.', 'Images/vicar.jpg', 'Vicar Street is a venue in Dublin Ireland.', 2.88),
+	(55, 'Vicar Street', '49 Thomas Street Dublin 8.', 'Images/vicar.jpg', 'Vicar Street is a venue in Dublin Ireland.', 3.36),
 	(56, 'Three Arena', 'No1 Docklands Dublin.', 'Images/3arena.jpg', 'Three arena is the biggest venue in Dublin.', NULL),
 	(57, 'Rosin Doubh', 'Somewhere in Galway city.', 'Images/Roisin_Dubh.jpg', 'The Rosin Doubh is one of the finest venues in Ireland.', NULL),
 	(58, 'Monroes', 'Galway City', 'Images/Monroes.jpg', 'Monroes is one of the finest places in Galway to see a Live Show.', 5),

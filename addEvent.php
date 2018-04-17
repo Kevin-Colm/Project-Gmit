@@ -55,7 +55,7 @@ if (isset($_POST["description"])) {
     </div>
     <div class="form-group">
         <label for="event-date">Event Date</label>
-        <input type="datetime-local" id="date" name="date">
+        <input type="date" id="date" name="date">
     </div>
     <div class="form-group">
         <label for="event-band">Select Band</label>
