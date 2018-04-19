@@ -41,4 +41,16 @@ This will open the git command prompt in the folder selected.
 >git clone https://github.com/Kevin-Colm/Project-Gmit.git
 ```
 5: To run the application first start the wamp server.
+
+6: Load the SQL file holding the datbase found in the exopt foler.
+* Open the Command Prompt
+* In the Command Prompt type:
+```CMD
+cd \wamp\bin\mysql\mysql5.6.17\bin
+```
+*	Then type: 
+```CMD
+mysql -u root -p < "Full Path\Eport.sql"
+```
+
 Then in a browser of your choice enter [http://localhost/Project-Gmit/](http://localhost/Project-Gmit/)
