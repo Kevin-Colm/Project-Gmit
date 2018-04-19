@@ -4,18 +4,18 @@ This repository is a gig guide web based application using the [wamp stack](http
 
 The application has three different types of user that will interact with the system.
 
-1: A Venu owner:
+1: A Venu owner
    
       Can create a new event with a date time and price for entry.
       They can add a band to the event by selecting from a list of registered bands if the band has registered to the system.
       If the band has not registered the venu can add some generic information about the band for the event.
    
-2: A band:
+2: A band
 
           Can register to the system with thier name, a band logo and a brief biog.
           This information will be available to the venu for selection if they are playing at an event there.
           
-3: A customer:
+3: A customer
 
           Can register with the system and leave a review of the band and or venu.
           They can also leave a rating for the gig.
