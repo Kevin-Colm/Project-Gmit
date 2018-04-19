@@ -44,8 +44,9 @@ This will open the git command prompt in the folder selected.
 ```
 5: To run the application first start the wamp server.
 
-6: Load the SQL file holding the datbase found in the exopt foler.
-* Open the Command Prompt
+6: Load the SQL file holding the datbase found in the export foler.
+* Open 
+Command Prompt
 * In the Command Prompt type:
 ```CMD
 cd \wamp\bin\mysql\mysql5.6.17\bin
