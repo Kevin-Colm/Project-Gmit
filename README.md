@@ -20,8 +20,10 @@ If the band has not registered the venu can add some generic information about t
  Can register with the system and leave a review of the band and or venu.
  They can also leave a rating for the gig.
           
-Author's: [Kevin Gleeson](https://github.com/kevgleeson78)
-          [Colm Woodlock](https://github.com/cwoodlock)
+Author's: 
+[Kevin Gleeson](https://github.com/kevgleeson78)
+
+[Colm Woodlock](https://github.com/cwoodlock)
 
 Third year students at:[GMIT](http://gmit.ie) Galway
 
