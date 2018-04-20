@@ -79,20 +79,27 @@
           
 
  <div class="card my-4">
-            <h5 class="card-header">Update Profile:</h5>
-            <div class="card-body">
-              <form method="post" action="createProfile.php" enctype="multipart/form-data">
+        <h5 class="card-header">Update Profile:</h5>
+        <div class="card-body">
+            <form method="post" action="createProfile.php" enctype="multipart/form-data">
                 <div class="form-group">
-                    <p class="card-title">Enter Name</p>
+                    <label for="name">Name</label>
                     <input class="form-control" type="text" name="name" Value="" placeholder="Enter name">
-                     <p class="card-title">Upload Photo</p>
-                    <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
-                     <p class="card-title">Tell us about yourself</p>
+                </div>
+                <div class="form-group">
+                    <label for="fileToUpload">Profile Image</label>
+                    
+                    <input class="file-field" type="file" name="fileToUpload" id="fileToUpload">
+                </div>
+                <div class="form-group">
+                    <label for="bio">Biography</label>
                     <textarea class="form-control" rows="3" name="bio"></textarea>
                 </div>
+               
                 <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-              </form>
-            </div>
+            </form>
+        </div>
+    </div>
           </div>
          
              
