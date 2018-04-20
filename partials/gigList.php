@@ -10,9 +10,10 @@
 
 //Inner join to get all badn, venue and event data for the gig list on the home page.
 $query = "SELECT venue.name as venueName,band.image,band.name as bandName, event.description,event.id, event.name, event.date,event.venueId,event.bandId
-FROM ((event
-INNER JOIN band ON event.bandId = band.id)
-INNER JOIN venue ON event.venueId = venue.id);
+FROM event
+INNER JOIN band ON event.bandId = band.id
+INNER JOIN venue ON event.venueId = venue.id
+ WHERE event.date >= DATE(NOW());
 ";
 ?>
 
@@ -34,14 +35,7 @@ while ($row = $result->fetch_assoc()) {
     $bandName = $row['bandName'];
     $eventId = $row['id'];
 
-    // get the date from the current row 
-    $dateCheck = new DateTime($row['date']);
-    
-    //get the current date
-    $now = new DateTime();
-    //Condition to chek if the event date is in the future
-    //used to dispaly only upcomming gigs on the home page
-    if ($dateCheck > $now) {
+   
         ?>
             <!-- Blog Post -->
             <div class="card mb-4">
@@ -86,7 +80,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
 
     <?php }
-}
+
 ?>
 </div>
 <div class="col-md-4">

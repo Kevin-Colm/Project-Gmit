@@ -12,9 +12,10 @@ session_start();
 include 'partials/header.php';
 include 'partials/home_hero.php';
  $query = "SELECT venue.name as venueName,band.image,band.name as bandName, event.description,event.id, event.name, event.date,event.venueId,event.bandId
-FROM ((event
-INNER JOIN band ON event.bandId = band.id)
-INNER JOIN venue ON event.venueId = venue.id);
+FROM event
+INNER JOIN band ON event.bandId = band.id
+INNER JOIN venue ON event.venueId = venue.id
+ WHERE event.date < DATE(NOW());
 ";
 ?>
 <div class="col-lg-12">
@@ -31,10 +32,8 @@ INNER JOIN venue ON event.venueId = venue.id);
             $bandId = $row['bandId'];
             $bandName = $row['bandName'];
             $eventId= $row['id'];
-            $dateCheck = new DateTime($row['date']);
-$now = new DateTime();
+            
 
-if($dateCheck < $now) {
             ?>
          <!-- Blog Post -->
             <div class="card mb-4">
@@ -79,7 +78,7 @@ if($dateCheck < $now) {
             </div>
            
       <?php  }
-        }?>
+        ?>
 </div>
 <?php
 include 'partials/footer.php';
