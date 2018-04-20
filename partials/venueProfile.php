@@ -89,9 +89,20 @@ if ($count > 0) {
         <div class="card-body">
             <form method="post" action="createProfile.php" enctype="multipart/form-data">
                 <div class="form-group">
+                    <label for="name">Venue Name</label>
                     <input class="form-control" type="text" name="name" Value="" placeholder="Enter name">
-                    <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+                </div>
+                <div class="form-group">
+                    <label for="fileToUpload">Profile Image</label>
+                    
+                    <input class="file-field" type="file" name="fileToUpload" id="fileToUpload">
+                </div>
+                <div class="form-group">
+                    <label for="bio">Biography</label>
                     <textarea class="form-control" rows="3" name="bio"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
                     <textarea class="form-control" rows="3" name="address"></textarea>
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary">Submit</button>
