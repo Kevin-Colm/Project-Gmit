@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     $bio = $_POST['bio'];
     $target_dir = "Images/";
     $address = $_POST['address'];
-
+    
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -81,11 +81,20 @@ if (isset($_POST['submit'])) {
         $row = $result->fetch_assoc();
         $type = $row['type'];
         if ($type == 'venue') {
-            $query = "UPDATE $type SET name = '$name',image = '$target_file',bio = '$bio', address='$address' WHERE id=$id;";
+            //COALESCE sql function ignores an empty string if it is sent by the form.
+            $query = "UPDATE $type SET name = COALESCE(NULLIF( '$name',''),name),"
+                    . "image = COALESCE(NULLIF( '$target_file','Images/'),image),"
+                    . "address = COALESCE(NULLIF( '$address',''),address),"
+                    . "bio = COALESCE(NULLIF( '$bio',''),bio) WHERE id=$id;";
             mysqli_query($conn, $query) or die(mysqli_error($conn));
-        } else
-            $query = "UPDATE $type SET name = '$name',image = '$target_file',bio = '$bio' WHERE id=$id;";
-
+        } else{
+            //COALESCE sql function ignores an empty string if it is sent by the form.
+            $query = "UPDATE $type SET name = COALESCE(NULLIF( '$name',''),name),"
+                    . "image = COALESCE(NULLIF( '$target_file','Images/'),image),"
+                    . "bio = COALESCE(NULLIF( '$bio',''),bio) WHERE id=$id;";
+            
+            
+            }
         mysqli_query($conn, $query) or die(mysqli_error($conn));
         header("location: profile.php");
     }
