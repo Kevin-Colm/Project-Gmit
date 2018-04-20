@@ -50,7 +50,7 @@ INNER JOIN venue ON event.venueId = venue.id
                       
                         <div class="col-md-7">
                     
-                            <a href="#">
+                            <a href="singleProfile.php?id=<?php echo $bandId ?>">
                                 <img class="img-fluid rounded mb-3 mb-md-0" src="<?php echo $image ?>" alt="">
                             </a>
                         </div>
