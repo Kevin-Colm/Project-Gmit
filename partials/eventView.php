@@ -8,8 +8,7 @@
  *
  */
 
-//include the top banner to the page
- include 'partials/home_hero.php';
+
 //get sesssino id for access to tables pk.
 //$id = $_SESSION['id'];
 //get the type of registered user to innput customised content to their page.

@@ -41,42 +41,47 @@ if (isset($_POST["description"])) {
     }
 }
 ?>
+<div class="card my-4">
+    <h5 class="card-header">Update Profile:</h5>
+    <div class="card-body">
+        <form method="POST">
+            <div class="form-group">
 
-<form method="POST">
-    <div class="form-group">
+                <label for="event-title">Evnet Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Example input">
 
-        <label for="event-title">Evnet Title</label>
-        <input type="text" class="form-control" id="title" name="title" placeholder="Example input">
+            </div>
+            <div class="form-group">
+                <label for="event-description">Event Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="event-date">Event Date</label>
+                <input type="date" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="event-band">Select Band</label>
+                <select name="bands">
 
-    </div>
-    <div class="form-group">
-        <label for="event-description">Event Description</label>
-        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="event-date">Event Date</label>
-        <input type="date" id="date" name="date">
-    </div>
-    <div class="form-group">
-        <label for="event-band">Select Band</label>
-        <select name="bands">
-<?php
+
+                    <?php
 //Populate the dropdown in teh create event form from the database.
-$query = "SELECT * FROM `band`";
+                    $query = "SELECT * FROM `band`";
 
-$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-while ($row = $result->fetch_assoc()) {
-    $name = $row['name'];
-    $bandId = $row['id'];
+                    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                    while ($row = $result->fetch_assoc()) {
+                        $name = $row['name'];
+                        $bandId = $row['id'];
 
-    echo "<option value='" . $bandId . "'>" . $name . "</option>";
-}
-?>
-        </select>
-
-        <button type="submit">Add Event</button>
+                        echo "<option value='" . $bandId . "'>" . $name . "</option>";
+                    }
+                    ?>
+                </select>
+               </div>
+                <button type="submit">Add Event</button>
+            
+        </form>
     </div>
-</form>
-
+</div>
 <?php
 include 'partials/footer.php';
