@@ -51,35 +51,6 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 }
 
 $conn->close();
-/*
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    //GEt type from dropdown in form
-    $type = $_POST['type'];
-    $query = "SELECT * FROM users WHERE username = '$username'";
-    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-    $count = mysqli_num_rows($result);
-    if ($count > 0) {
-        echo 'User exists...';
-    } else {
-
-//If there is no PK then an insert will be ok
-        $query = "Insert into users (username, userPassword) VALUES('$username', '$password')";
-
-
-        mysqli_query($conn, $query) or die(mysqli_error($conn));
-        $last_id = $conn->insert_id;
-        $queryType = "insert into $type(id)VALUES('$last_id');";
-        $queryType .= "INSERT INTO userType (id,type)VALUES('$last_id','$type');";
-        mysqli_multi_query($conn, $queryType) or die(mysqli_error($conn));
-        //Test output.
-        echo "You have selected :" . $type;  // Displaying Selected Value
-        header("Location: login.php");
-    }
- }
- * 
- */
-
 ?>
 
 
