@@ -13,7 +13,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-    //GEt tyoe from dropdown in form
+    //GEt type from dropdown in form
     $type = $_POST['type'];
     $query = "SELECT * FROM users WHERE username = '$username'";
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -39,26 +39,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
 ?>
 
 
-<!--        <form class="form-signin" method="POST">
-            
-            <h2 class="form-signin-heading">Please Register here</h2>
-            
-            <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">@</span>
-                <input type="text" name="userName" class="form-control" placeholder="Username" required>
-            </div>
-            
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            
-            <select name="type">
-                <option value="customer">Customer</option>
-                <option value="band">Band</option>
-                <option value="venue">Venue</option>
-            </select>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-                        <a class="btn btn-lg btn-primary btn-block" href="register.php">Register</a>
-        </form>  -->
+
 <div id="login-overlay" class="modal-dialog modal-lg">
 
     <div class="modal-content">

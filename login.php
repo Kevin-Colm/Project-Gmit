@@ -15,6 +15,46 @@ session_start();
 //import database connection
 include 'partials/header.php';
 include 'partials/home_hero.php';
+
+if(isset($_POST['username']) and isset($_POST['password'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $user_id = 0;
+    
+
+    $stmt = $conn->prepare("SELECT id, username, userPassword FROM users WHERE username=? AND userPassword=? LIMIT 1");
+    $stmt->bind_param('ss', $username, $password);
+    $stmt->execute();
+    $stmt->bind_result($user_id,$username, $password);
+    $stmt->store_result();
+    if($stmt->num_rows == 1)  //To check if the row exists
+        {
+            if($stmt->fetch()) //fetching the contents of the row
+            {
+               
+                   
+                $_SESSION['id'] = $user_id;
+                $_SESSION['username'] = $username;
+                         
+                $query = "SELECT type from userType where id= '$user_id'";
+                $result = $conn->query($query);
+                $row = $result->fetch_assoc();
+              
+                 header("location: profile.php");
+                   exit();
+        
+           }
+
+    }
+    else {
+       //If the login credentials doesn't match, he will be shown with an error message.
+        echo "<h1 style='color:Red;'>Invalid Username or Password.</h1>";
+    }
+    $stmt->close();
+}
+
+$conn->close();
+/*
 //Check if the text fields are set
 if (isset($_POST['username']) and isset($_POST['password'])) {
     //Place the form data into variables to put into database.
@@ -51,7 +91,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         echo "<h1 style='color:Red;'>Invalid Username or Password.</h1>";
     }
 }
-
+*/
 ?>
 
 <div id="login-overlay" class="modal-dialog modal-lg">
@@ -83,7 +123,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
                                         </label>
                                         <p class="help-block">(if this is a private computer)</p>
                                     </div>
-                                    <button type="submit" class="btn btn-success btn-block">Login</button>
+                                    <button type="submit"class="btn btn-success btn-block">Login</button>
                                 </form>
                             </div>
                         </div>
