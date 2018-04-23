@@ -78,7 +78,9 @@ INNER JOIN venue ON event.venueId = venue.id
             </div>
            
       <?php  }
+
         ?>
+         
 </div>
 <?php
 include 'partials/footer.php';

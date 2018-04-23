@@ -146,10 +146,10 @@ if($date < $now) {
             </form>
         </div>
     </div>
+ 
+  
 
-   
 
-
-    
+  
 <?php
 }

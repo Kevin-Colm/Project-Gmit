@@ -65,12 +65,7 @@ where $id = event.id;
 
          
           <hr>
-
-         
-
-        
-
-     
+ 
 
         </div>
 
@@ -91,6 +86,7 @@ where $id = event.id;
                 if($type == 'customer'){
                     //Only a customer can post a rating
                     include 'rating.php';
+                    include 'comment.php';
                 }
             }
         ?>
