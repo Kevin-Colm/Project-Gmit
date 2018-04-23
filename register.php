@@ -10,7 +10,46 @@
 include 'partials/header.php';
 include 'partials/home_hero.php';
 if (isset($_POST['username']) and isset($_POST['password'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    //GEt type from dropdown in form
+    $type = $_POST['type'];
+    
+    $stmt = $conn->prepare("SELECT username FROM users WHERE username = ?");
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $stmt->bind_result($username);
+    $stmt->store_result();
+    if($stmt->num_rows == 1)  //To check if the row exists
+        {
+         //If the login credentials doesn't match, he will be shown with an error message.
+        echo "<h1 style='color:Red;'>The username Exists please choose another one.</h1>";
+          
+    }
+    else{
+         
+        $stmt = $conn->prepare("Insert into users (username, userPassword) VALUES(?, ?)");
+        $stmt->bind_param('ss', $username,$password);
+        $stmt->execute();
+        $stmt->bind_result($username);
+        $stmt->store_result();
 
+        
+        $last_id = $conn->insert_id;
+        $queryType = "insert into $type(id)VALUES('$last_id');";
+        $queryType .= "INSERT INTO userType (id,type)VALUES('$last_id','$type');";
+        mysqli_multi_query($conn, $queryType) or die(mysqli_error($conn));
+      
+        header("Location: login.php");
+        exit();
+    
+    $stmt->close();
+    }
+   
+}
+
+$conn->close();
+/*
     $username = $_POST['username'];
     $password = $_POST['password'];
     //GEt type from dropdown in form
@@ -35,7 +74,10 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         echo "You have selected :" . $type;  // Displaying Selected Value
         header("Location: login.php");
     }
-}
+ }
+ * 
+ */
+
 ?>
 
 

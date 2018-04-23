@@ -39,6 +39,7 @@ if (isset($_POST["description"])) {
 
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
     }
+    header("Location: index.php");
 }
 ?>
 <div class="card my-4">
@@ -65,7 +66,7 @@ if (isset($_POST["description"])) {
 
 
                     <?php
-//Populate the dropdown in teh create event form from the database.
+                    //Populate the dropdown in teh create event form from the database.
                     $query = "SELECT * FROM `band`";
 
                     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
