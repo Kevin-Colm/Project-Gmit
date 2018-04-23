@@ -12,13 +12,13 @@
 //get sesssino id for access to tables pk.
 //$id = $_SESSION['id'];
 //get the type of registered user to innput customised content to their page.
-$id = $_GET['id'];
+$eventId = $_GET['id'];
 //Inner join to get the data from the tables venue, band and event
 $query = "SELECT venue.name as venueName,band.image,band.name as bandName, event.description, event.name, event.date,event.venueId,event.bandId
 FROM ((event
 INNER JOIN band ON event.bandId = band.id)
 INNER JOIN venue ON event.venueId = venue.id)
-where $id = event.id;
+where $eventId = event.id;
 ";
  ?>
 
@@ -86,7 +86,7 @@ where $id = event.id;
                 if($type == 'customer'){
                     //Only a customer can post a rating
                     include 'rating.php';
-                    include 'comment.php';
+                    
                 }
             }
         ?>

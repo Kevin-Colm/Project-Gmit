@@ -109,7 +109,7 @@ if($date < $now) {
         $query3 = "update venue set rating=$avg where id = $venueId";
         mysqli_query($conn, $query3) or die(mysqli_error($conn));
         }
-        mysqli_close($conn);
+        
     }
     ?>
 
@@ -152,4 +152,5 @@ if($date < $now) {
 
   
 <?php
+include 'comment.php';
 }

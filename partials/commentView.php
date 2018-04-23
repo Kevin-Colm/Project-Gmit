@@ -1,6 +1,10 @@
 <?php
- $query = "SELECT customer.image,customer.name,event.id, comments.comment FROM customer INNER JOIN comments ON customer.id = comments.userId inner join event on event.id = comments.eventId where event.id = $eventId;";
+
+
+    $query = "SELECT customer.image,customer.name,event.id, comments.comment FROM customer INNER JOIN comments ON customer.id = comments.userId inner join event on event.id = comments.eventId where event.id = $eventId;";
  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+ 
  //While loop to get each matching row from each table in the inner join
 while ($row = $result->fetch_assoc()) {
     
