@@ -26,14 +26,16 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         echo "<h1 style='color:Red;'>The username Exists please choose another one.</h1>";
           
     }
-    else{
+    
+        if(strlen($password) < 6){
+	echo "<h1 style='color:Red;'>Your password must be at least six characters in lenght.</h1>";
+        }
+        else{        
          
         $stmt = $conn->prepare("Insert into users (username, userPassword) VALUES(?, ?)");
         $stmt->bind_param('ss', $username,$password);
         $stmt->execute();
-        $stmt->bind_result($username);
-        $stmt->store_result();
-
+        
         
         $last_id = $conn->insert_id;
         $queryType = "insert into $type(id)VALUES('$last_id');";
@@ -44,7 +46,7 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
         exit();
     
     $stmt->close();
-    }
+    }  
    
 }
 
