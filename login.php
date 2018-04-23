@@ -21,27 +21,32 @@ if(isset($_POST['username']) and isset($_POST['password'])){
     $password = $_POST['password'];
     $user_id = 0;
     
-
+    //Prepared statment for login inputs
     $stmt = $conn->prepare("SELECT id, username, userPassword FROM users WHERE username=? AND userPassword=? LIMIT 1");
+    //Bind post username and password to the prepared statement.
     $stmt->bind_param('ss', $username, $password);
+    //Run Statement
     $stmt->execute();
+    //Get result set.
     $stmt->bind_result($user_id,$username, $password);
+    //Store result set into variable
     $stmt->store_result();
     if($stmt->num_rows == 1)  //To check if the row exists
         {
             if($stmt->fetch()) //fetching the contents of the row
-            {
-               
-                   
+            {   
+                //Store the username and id from database into the global session variables.
+                //Can then be used to show custom views to the user.
                 $_SESSION['id'] = $user_id;
                 $_SESSION['username'] = $username;
-                         
+                //Query to get the data from the  user type table to display content 
+                //depending the type of account the user has.        
                 $query = "SELECT type from userType where id= '$user_id'";
                 $result = $conn->query($query);
                 $row = $result->fetch_assoc();
-              
-                 header("location: profile.php");
-                   exit();
+                //Redirect to the profile page if login success
+                header("location: profile.php");
+                exit();
         
            }
 
@@ -50,48 +55,12 @@ if(isset($_POST['username']) and isset($_POST['password'])){
        //If the login credentials doesn't match, he will be shown with an error message.
         echo "<h1 style='color:Red;'>Invalid Username or Password.</h1>";
     }
+    //Close the statement
     $stmt->close();
 }
-
+//Close the database connection.
 $conn->close();
-/*
-//Check if the text fields are set
-if (isset($_POST['username']) and isset($_POST['password'])) {
-    //Place the form data into variables to put into database.
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    //GEt  users details from the table
-    $query = "SELECT username,id,userPassword FROM `users` WHERE userName='$username' and userPassword='$password'";
 
-    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-    //php function to count the result rows in the query
-    $count = mysqli_num_rows($result);
-    // test echo $count;
-    //If the value of count is greater than 0 there is a match of username and password.
-    if ($count > 0) {
-        // output data of each row.
-        //while loop to get each row
-        while ($row = $result->fetch_assoc()) {
-            //store data from teh table in session state for the other pages
-            $_SESSION['username'] = $row["username"];
-            $_SESSION['id'] = $row["id"];
-            $_SESSION['password'] = $row["userPassword"];
-            //REdirect to loggedin page.
-            //header("Location: loggedIn.php");
-        }
-        $id = $_SESSION['id'];
-         $query = "SELECT type from userType where id= '$id'";
-                $result = $conn->query($query);
-                $row = $result->fetch_assoc();
-              
-                header("location: profile.php");
-        //message to print out if the table is empty (No users)
-    } else {
-        //3.1.3 If the login credentials doesn't match, he will be shown with an error message.
-        echo "<h1 style='color:Red;'>Invalid Username or Password.</h1>";
-    }
-}
-*/
 ?>
 
 <div id="login-overlay" class="modal-dialog modal-lg">
