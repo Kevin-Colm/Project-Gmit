@@ -2,7 +2,7 @@
 
  if (isset($_POST['submitComment'])) {
      $comment = $_POST['comment'];
-      $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+      
         $query4 = "select userId from comments where userId= $userId and eventId = $eventId";
         $result4 = mysqli_query($conn, $query4) or die(mysqli_error($conn));
         $num_rows = mysqli_num_rows($result4);
@@ -11,7 +11,7 @@
         } else{
         //insert the rating to the rating table with the venueId and  user ID.
         $query = "insert into comments(eventId,userId,comment,date) values('$eventId','$userId','$comment',DATE(NOW()));";
-        
+        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         }
 
        
