@@ -36,19 +36,17 @@ $rating = $row1['rating'];
 <div class="col-lg-8">
 
     <!-- Title -->
-    <h1 class="mt-4"><?php echo $type ?> Profile</h1>
-
-    <!-- Author -->
-    <p class="lead">
-        by
-        <a href="#"><?php echo $name ?></a>
-    </p>
-    <h2>Rating: <?php echo $rating ?></h2>
-    <span class="stars"><?php echo $rating ?></span>
-    <hr>
-
-
-
+    <h1 class="mt-4"><?php echo strtoupper($type) .": ". $name ?></h1>
+    <?php 
+    if($rating==0){
+                    echo '<h2>'.strtoupper($type).' Not rated yet.</h2>';  
+    } 
+    else{?>
+        <h2>Rating: <?php echo $rating ?></h2>
+        <span class="stars"><?php echo $rating ?></span>
+    <?php 
+    
+    }?>
     <hr>
 
     <!-- Preview Image -->

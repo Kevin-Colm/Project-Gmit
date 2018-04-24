@@ -40,18 +40,19 @@ where $eventId = event.id;
         <div class="col-lg-8">
 
           <!-- Title -->
-          <h1 class="mt-4"><?php echo $name ?></h1>
+          <h1 class="mt-4">
+              <a href="singleProfile.php?id=<?php echo $bandId ?>"> <?php echo $name ?></a>
+          </h1>
 
           <!-- Author -->
-          <p class="lead">
-            by
-            <a href="#"><?php echo $venueName ?></a>
-          </p>
+          <h2>Live @             
+            <a href="singleProfile.php?id=<?php echo $venueId ?>"><?php echo $venueName ?></a>
+          </h2>
 
           <hr>
 
           <!-- Date/Time -->
-          <p><?php echo $date ?></p>
+          <h3>Date: <?php echo $date ?></h3>
 
           <hr>
 
@@ -77,7 +78,7 @@ where $eventId = event.id;
             if (isset($_SESSION['id'])) {
             //set the user id to the session id
             $userId = $_SESSION['id'];
-            // Get the row from the usertype table matchin the session userId.
+            // Get the row from the usertype table matching the session userId.
             $query1 = "SELECT * FROM userType WHERE id = '$userId'";
             $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
             $row1 = $result1->fetch_assoc();
