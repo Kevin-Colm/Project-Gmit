@@ -28,6 +28,7 @@ $row1 = $result1->fetch_assoc();
 $name = $row1['name'];
 $image = $row1['image'];
 $bio = $row1['bio'];
+
 $rating = $row1['rating'];
 ?>
 
@@ -46,8 +47,7 @@ $rating = $row1['rating'];
     <span class="stars"><?php echo $rating ?></span>
     <hr>
 
-    <!-- Date/Time -->
-    <p>Posted on January 1, 2018 at 12:00 PM</p>
+
 
     <hr>
 

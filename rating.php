@@ -30,7 +30,7 @@ if($date < $now) {
         
 
         $bandId = $row['bandId'];
-        $query4 = "select userId from ratings where userId= $userId and id = $bandId and eventID= $eventId";
+        $query4 = "select userId from ratings where userId= $userId and id = $bandId and eventId= $eventId";
         $result4 = mysqli_query($conn, $query4) or die(mysqli_error($conn));
         $num_rows = mysqli_num_rows($result4);
 
