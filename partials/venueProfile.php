@@ -31,22 +31,14 @@ if ($count > 0) {
 
 <!-- Post Content Column -->
 <div class="col-lg-8">
-
     <!-- Title -->
     <h1 class="mt-4">Personal Profile Page</h1>
-
     <!-- Author -->
     <p class="lead">
-        by
         <a href="#"><?php echo $name ?></a>
     </p>
     <h2>Rating: <?php echo $rating ?></h2>
     <span class="stars"><?php echo $rating ?></span>
-
-    <hr>
-
-    <!-- Date/Time -->
-    <p>Posted on January 1, 2018 at 12:00 PM</p>
 
     <hr>
 
@@ -58,9 +50,7 @@ if ($count > 0) {
     <!-- Post Content -->
     <p class="lead"><?php echo $bio ?></p>
 
-
     <hr>
-
 
 </div>
 
@@ -72,14 +62,9 @@ if ($count > 0) {
         <h5 class="card-header">Add Event</h5>
         <div class="card-body">
             <div class="input-group">
-
-
                 <form method="get" action="addEvent.php">
-
-
                     <button class="btn btn-primary btn-lg " type="submit" >Go!</button>
                 </form>
-
             </div>
         </div>
     </div>
@@ -109,7 +94,5 @@ if ($count > 0) {
             </form>
         </div>
     </div>
-
-
 
 </div>
