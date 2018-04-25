@@ -27,21 +27,12 @@ if (isset($_POST['submit'])) {
     $bio = mysqli_real_escape_string($conn,$_POST['bio']);
     $target_dir = "Images/";
     $address = mysqli_real_escape_string($conn,$_POST['address']);
-    
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+   
 // Check if image file is a actual image or fake image
     if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
+        
 // Check if file already exists
     if (file_exists($target_file)) {
 
@@ -90,6 +81,7 @@ if (isset($_POST['submit'])) {
         mysqli_query($conn, $query) or die(mysqli_error($conn));
         header("location: profile.php");
     }
+}
 }
                      
 
