@@ -43,7 +43,7 @@ if (isset($_POST["description"])) {
 }
 ?>
 <div class="card my-4">
-    <h5 class="card-header">Update Profile:</h5>
+    <h5 class="card-header">Add Event:</h5>
     <div class="card-body">
         <form method="POST">
             <div class="form-group">

@@ -68,6 +68,12 @@ if (isset($_SESSION['username'])) {
                             <a class="nav-link" href="pastEvent.php">Past Events</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="bandList.php">Bands</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="venueList.php">Venue's</a>
+                        </li>
+                        <li class="nav-item">
                             <?php
                             //If the userName is not set Show the login menue item
                             if (!(isset($_SESSION['username']))) {
