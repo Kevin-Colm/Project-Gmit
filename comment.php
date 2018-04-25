@@ -24,7 +24,7 @@
             <div class="card-body">
               <form method="post">
                 <div class="form-group">
-                  <textarea class="form-control" rows="3" name="comment"></textarea>
+                    <textarea class="form-control" rows="3" name="comment" required="true"></textarea>
                 </div>
                 <button type="submit" name="submitComment" class="btn btn-primary">Submit</button>
               </form>
