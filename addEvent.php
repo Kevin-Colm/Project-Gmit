@@ -57,7 +57,7 @@ if (isset($_POST["submitUpdate"])) {
     
 
 
-        $query = "update event set description = '$description',date='$date',name='$name' where id = '$eventId';";
+        $query = "update event set description = COALESCE(NULLIF( '$description',''),description),date=COALESCE(NULLIF( '$date',''),date),name=COALESCE(NULLIF( '$name',''),name) where id = '$eventId';";
 
         mysqli_query($conn, $query) or die(mysqli_error($conn));
     
@@ -126,7 +126,7 @@ if (isset($_POST["submitUpdate"])) {
             </div>
             <div class="form-group">
                 <label for="event-date">Event Date</label>
-                <input type="date" id="date" name="date" required="true">
+                <input type="date" id="date" name="date">
             </div>
             <div class="form-group">
                 <label for="event-band">Select Event</label>
