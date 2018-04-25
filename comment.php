@@ -1,7 +1,7 @@
 <?php
 
  if (isset($_POST['submitComment'])) {
-     $comment = $_POST['comment'];
+     $comment = mysqli_real_escape_string($conn,$_POST['comment']);
       
         $query4 = "select userId from comments where userId= $userId and eventId = $eventId";
         $result4 = mysqli_query($conn, $query4) or die(mysqli_error($conn));

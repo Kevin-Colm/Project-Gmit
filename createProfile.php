@@ -23,10 +23,10 @@ if (isset($_SESSION['username'])) {
 //Check if the submit post http request has been set
 if (isset($_POST['submit'])) {
     //Get name from the form
-    $name = $_POST['name'];
-    $bio = $_POST['bio'];
+    $name = mysqli_real_escape_string($conn,$_POST['name']);
+    $bio = mysqli_real_escape_string($conn,$_POST['bio']);
     $target_dir = "Images/";
-    $address = $_POST['address'];
+    $address = mysqli_real_escape_string($conn,$_POST['address']);
     
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;

@@ -22,10 +22,10 @@ if (isset($_SESSION['username'])) {
 
 if (isset($_POST["submitEvent"])) {
     //check if the form description has been submitted.
-    $description = $_POST['description'];
+    $description = mysqli_real_escape_string($conn,$_POST['description']);
     $date = $_POST['date'];
   
-    $name = $_POST['title'];
+    $name = mysqli_real_escape_string($conn,$_POST['title']);
   
     $bandId = $_POST['bands'];
     //SQL query to check if the ID PK exists
@@ -47,10 +47,10 @@ if (isset($_POST["submitEvent"])) {
 //Update Event
 if (isset($_POST["submitUpdate"])) {
     //check if the form description has been submitted.
-    $description = $_POST['description'];
+    $description = mysqli_real_escape_string($conn,$_POST['description']);
     $date = $_POST['date'];
   
-    $name = $_POST['title'];
+    $name = mysqli_real_escape_string($conn,$_POST['title']);
   
     $eventId = $_POST['events'];
     
