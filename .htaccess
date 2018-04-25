@@ -1,10 +1,3 @@
-#remove php file extension-e.g. https://example.com/file.php will become https://example.com/file
-RewriteEngine on
-RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
-RewriteRule ^ /%1 [NC,L,R]
-
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^ %{REQUEST_URI}.php [NC,L]
 # Custom error pages.
 ErrorDocument 404 /Project-Gmit/404.php
 
