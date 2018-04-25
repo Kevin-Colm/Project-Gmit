@@ -46,7 +46,7 @@ This will open the git command prompt in the folder selected.
 ```bash
 >git clone https://github.com/Kevin-Colm/Project-Gmit.git
 ```
-5: To run the application first start the wamp server.
+5: To run the application first start wamp server.
 
 6: Load the SQL file holding the datbase found in the export foler.
 
