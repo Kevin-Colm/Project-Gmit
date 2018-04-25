@@ -18,7 +18,7 @@ while ($row = $result->fetch_assoc()) {
     $name = $row['name'];
     
     $image = $row['image'];
-    
+    $address = $row['address'];
     $id = $row['id'];
     
 
@@ -39,7 +39,10 @@ while ($row = $result->fetch_assoc()) {
                         </div>
                         <div class="col-md-5">
                             <h2 class="card-title"><a href="singleProfile.php?id=<?php echo $id ?>"><?php echo $name ?></a></h2>
+                          <h4 class="card-title"><?php echo $address ?></h4>
                         </div>
+                         
+                          
                         
                        
                     </div>

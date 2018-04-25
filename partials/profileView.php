@@ -26,6 +26,9 @@ $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
 //Get name , image and bio if applicable.
 $row1 = $result1->fetch_assoc();
 $name = $row1['name'];
+if($type=='venue'){
+$address = $row1['address'];
+}
 $image = $row1['image'];
 $bio = $row1['bio'];
 
@@ -37,7 +40,11 @@ $rating = $row1['rating'];
 
     <!-- Title -->
     <h1 class="mt-4"><?php echo strtoupper($type) .": ". $name ?></h1>
+    <?php if($type == 'venue'){
+        ?>
+    <h3 class="mt-4"><?php echo  $address ?></h3>
     <?php 
+    }
     if($rating==0){
                     echo '<h2>'.strtoupper($type).' Not rated yet.</h2>';  
     } 
