@@ -37,7 +37,7 @@ while ($row = $result->fetch_assoc()) {
         $rating = $row2['rating'];
         ?>
                 <div class="col-sm-3">
-                    <p>Rated <?php echo $type ?> :</p> <span class="stars"><?php echo $rating ?></span>
+                    <p>Rated <?php echo $type ?> </p> <span class="stars"><?php echo $rating ?></span>
                 </div>
     <?php } ?>
             
