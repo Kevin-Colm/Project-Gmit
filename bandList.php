@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'partials/header.php';
 include 'partials/home_hero.php';
 //Inner join to get all badn, venue and event data for the gig list on the home page.
