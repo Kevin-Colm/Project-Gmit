@@ -20,11 +20,13 @@ if (isset($_SESSION['username'])) {
     $id = $_SESSION['id'];
 }
 
-if (isset($_POST["description"])) {
+if (isset($_POST["submitEvent"])) {
     //check if the form description has been submitted.
     $description = $_POST['description'];
     $date = $_POST['date'];
+  
     $name = $_POST['title'];
+  
     $bandId = $_POST['bands'];
     //SQL query to check if the ID PK exists
     $query = "SELECT * FROM userType WHERE id = '$id'";
@@ -41,24 +43,45 @@ if (isset($_POST["description"])) {
     }
     header("Location: index.php");
 }
+
+//Update Event
+if (isset($_POST["submitUpdate"])) {
+    //check if the form description has been submitted.
+    $description = $_POST['description'];
+    $date = $_POST['date'];
+  
+    $name = $_POST['title'];
+  
+    $eventId = $_POST['events'];
+    
+    
+
+
+        $query = "update event set description = '$description',date='$date',name='$name' where id = '$eventId';";
+
+        mysqli_query($conn, $query) or die(mysqli_error($conn));
+    
+    header("Location: index.php");
+}
 ?>
+<div class="col-6">
 <div class="card my-4">
     <h5 class="card-header">Add Event:</h5>
     <div class="card-body">
         <form method="POST">
             <div class="form-group">
 
-                <label for="event-title">Evnet Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Example input">
-
+                <label for="event-title">Event Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required="true">
+              
             </div>
             <div class="form-group">
                 <label for="event-description">Event Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3" required="true"></textarea>
             </div>
             <div class="form-group">
                 <label for="event-date">Event Date</label>
-                <input type="date" id="date" name="date">
+                <input type="date" id="date" name="date" required="true">
             </div>
             <div class="form-group">
                 <label for="event-band">Select Band</label>
@@ -79,10 +102,58 @@ if (isset($_POST["description"])) {
                     ?>
                 </select>
                </div>
-                <button type="submit">Add Event</button>
+                <button type="submitEvent" name="submit">Add Event</button>
             
         </form>
     </div>
+</div>
+</div>    
+    
+<div class="col-6">
+<div class="card my-4">
+    <h5 class="card-header">Update Event:</h5>
+    <div class="card-body">
+        <form method="POST">
+            <div class="form-group">
+
+                <label for="event-title">Event Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title">
+              
+            </div>
+            <div class="form-group">
+                <label for="event-description">Event Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="event-date">Event Date</label>
+                <input type="date" id="date" name="date" required="true">
+            </div>
+            <div class="form-group">
+                <label for="event-band">Select Event</label>
+                <select name="events">
+
+
+                    <?php
+                    //Populate the dropdown in teh create event form from the database.
+                    $query1 = "SELECT * FROM event where $id = venueId";
+
+                    $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
+                    while ($row1 = $result1->fetch_assoc()) {
+                        $name = $row1['name'];
+                        $description = $row1['description'];
+                        $date = $row1['date'];
+                        $eventId = $row1['id'];
+
+                        echo "<option value='" . $eventId . "'>" . $name . "</option>";
+                    }
+                    ?>
+                </select>
+               </div>
+                <button type="submit" name="submitUpdate">Update Event</button>
+            
+        </form>
+    </div>
+</div>
 </div>
 <?php
 include 'partials/footer.php';

@@ -59,7 +59,7 @@ if ($count > 0) {
 
     <!-- Search Widget -->
     <div class="card my-4">
-        <h5 class="card-header">Add Event</h5>
+        <h5 class="card-header">Add/Update Event</h5>
         <div class="card-body">
             <div class="input-group">
                 <form method="get" action="addEvent.php">
