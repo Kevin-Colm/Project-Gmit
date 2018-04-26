@@ -22,29 +22,41 @@ while ($row = $result->fetch_assoc()) {
     ?>
     <!-- Single Comment -->
 
-    <div class="media mb-4">
 
-        <img class="small mr-3 rounded-circle" src="<?php echo $image ?>" alt="" width="90" height="90">
 
-        <div class="media-body">
+    <div class="col-lg-8">
 
-            <h4 class="mt-0"><?php echo $name ?></h4>
-            <h4 class="mt-0">Posted on: <?php echo $date ?></h4>
-            <p><?php echo $comment ?></p>
-    <?php
-    while ($row2 = $result1->fetch_assoc()) {
-        $type = $row2['type'];
-        $rating = $row2['rating'];
-        ?>
-                <div class="col-sm-3">
+        <div class="panel panel-white post panel-shadow">
+
+            <?php
+            while ($row2 = $result1->fetch_assoc()) {
+                $type = $row2['type'];
+                $rating = $row2['rating'];
+                ?>
+                <div class="comment-rating col-xs-3 pull-right">
                     <p>Rated <?php echo $type ?> </p> <span class="stars"><?php echo $rating ?></span>
                 </div>
-    <?php } ?>
-            
-        </div>
-        
-    </div>
+            <?php } ?>
+            <div class="post-heading">
 
+                <div class="pull-left image">
+                    <img src="<?php echo $image ?>" class="img-circle avatar" alt="user profile image" >
+                </div>
+                <div class="pull-left meta">
+                    <div class="title h5">
+                        <b><?php echo $name ?></b>
+
+                    </div>
+                    <h6 class="text-muted time"><?php echo $date ?></h6>
+                </div>
+
+            </div> 
+            <div class="post-description"> 
+                <p><?php echo $comment ?></p>
+            </div>
+
+        </div>
+    </div>
 
     <?php
 }

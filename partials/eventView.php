@@ -70,8 +70,7 @@ where $eventId = event.id;
 
         </div>
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
+      
 
         <?php 
             //check if the user is logged in
@@ -86,10 +85,13 @@ where $eventId = event.id;
 
                 if($type == 'customer'){
                     //Only a customer can post a rating
-                    include 'rating.php';
-                    
-                }
+                    ?>
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+                    <?php include 'rating.php';?>
+                    </div>
+            <?php    }
             }
-        ?>
-        </div>
+      
+        
        
