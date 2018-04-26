@@ -13,17 +13,16 @@
 //$id = $_SESSION['id'];
 //get the type of registered user to innput customised content to their page.
 $eventId = $_GET['id'];
+
 //Inner join to get the data from the tables venue, band and event
 $query = "SELECT venue.name as venueName,band.image,band.name as bandName, event.description, event.name, event.date,event.venueId,event.bandId
 FROM ((event
 INNER JOIN band ON event.bandId = band.id)
 INNER JOIN venue ON event.venueId = venue.id)
-where $eventId = event.id;
-";
- ?>
+where $eventId = event.id;";
 
-    <?php
     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        //Get result set and store each row in a variable
         $row = $result->fetch_assoc();
             $desc = $row['description'];
             $date = $row['date'];
@@ -33,7 +32,7 @@ where $eventId = event.id;
             $venueId = $row['venueId'];
             $bandId = $row['bandId'];
             $bandName = $row['bandName'];
-            ?>
+?>
    
 
       <!-- Post Content Column -->
@@ -86,12 +85,15 @@ where $eventId = event.id;
                 if($type == 'customer'){
                     //Only a customer can post a rating
                     ?>
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-                    <?php include 'rating.php';?>
+                    <!-- Sidebar Widgets Column -->
+                    <div class="col-md-4">
+                        <?php
+                            //Include file
+                            include 'rating.php';
+                        ?>
                     </div>
-            <?php    }
-            }
+          <?php }//End if
+            }//End if
       
         
        

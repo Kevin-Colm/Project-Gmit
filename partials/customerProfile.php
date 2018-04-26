@@ -12,7 +12,8 @@
 if (isset($_SESSION['username'])) {
     //If it is set we can use the id to insert into their row in the database.
     $id = $_SESSION['id'];
-}
+}// End if
+
 //SQL auery to check if the ID PK exists
 $query = "SELECT * FROM customer WHERE id = '$id'";
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -25,7 +26,7 @@ if ($count > 0) {
     $img = $row['image'];
     $bio = $row['bio'];
     mysqli_query($conn, $query) or die(mysqli_error($conn));
-}
+}//End if
 ?>
 
 
@@ -57,6 +58,7 @@ if ($count > 0) {
     <div class="card my-4">
         <h5 class="card-header">Update Profile:</h5>
         <div class="card-body">
+             <!--redirect to the createProfile.php on form submit-->
             <form method="post" action="createProfile.php" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Name</label>

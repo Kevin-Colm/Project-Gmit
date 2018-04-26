@@ -10,7 +10,7 @@ if (isset($_SESSION['username'])) {
     $query = "SELECT type from userType where id= '$id'";
     $result = $conn->query($query);
     $row = $result->fetch_assoc();
-}
+}//End If
 ?>
 
 <!--
@@ -80,7 +80,8 @@ if (isset($_SESSION['username'])) {
                                 ?>
                                 <a class="nav-link" href="login.php">Login/Register</a>
                                 <?php
-                            } else {
+                            }//End If
+                             else {
                                 //Otherwise show the user name i its place with a link to the user profile
                                 $userName = $_SESSION['username'];
                                 ?>
@@ -91,9 +92,9 @@ if (isset($_SESSION['username'])) {
                                 <a class="nav-link" href="Profile.php"><?php echo $userName ?></a>
                             </li>
 
-    <?php
-}
-?>             
+                                <?php
+                            }//End Else
+                            ?>             
 
 
                     </ul>

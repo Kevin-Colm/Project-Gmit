@@ -7,26 +7,31 @@
  * Date: 18/02/2017
  *
  */
-
+//File to udpdate or create the user profile once signed in.
 
 //Check if username is assigned in the sessiion
 if (isset($_SESSION['username'])) {
     //If it is set we can use the id to insert into their row in the database.
     $id = $_SESSION['id'];
-}
+}//End if
+
+
 //SQL auery to check if the ID PK exists
 $query = "SELECT * FROM band WHERE id = '$id'";
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 //php function to count the matching rows in the table
 $count = mysqli_num_rows($result);
+
 //IF count is greater than 0 the pk exists so execute an updte rather than an insert.
 if ($count > 0) {
+    //get the reslut set and store each returned column inot variables.
     $row = $result->fetch_assoc();
     $name = $row['name'];
     $img = $row['image'];
     $bio = $row['bio'];
     mysqli_query($conn, $query) or die(mysqli_error($conn));
-}
+}//End if
+
 ?>
 <!-- Post Content Column -->
 <div class="col-lg-8">
@@ -56,6 +61,7 @@ if ($count > 0) {
     <div class="card my-4">
         <h5 class="card-header">Update Profile:</h5>
         <div class="card-body">
+            <!--redirect to the createProfile.php on form submit-->
             <form method="post" action="createProfile.php" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Band Name</label>

@@ -37,6 +37,7 @@ switch ($type) {
         break;
 }
 
-}else{
+}//End IF
+else{
    header("Location: index.php");
-}
+}//End Else

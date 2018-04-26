@@ -14,7 +14,9 @@
     <a><img class="img-fluid pull-left" src="./Images/Banner.png" style='height:200px; padding-right: 10px;' alt=""/></a>
    
     <p>GigGuide is a website where you can find the best events happening around you. We aim to provide the best user, venue and band experience.</p>
-   <?php if (!isset($_SESSION['username'])) { ?>
+   <?php 
+        //Condition to check if a user has logged in. if true hide the button
+        if (!isset($_SESSION['username'])) { ?>
         <a class="btn btn-primary btn-lg" href=" register.php" role="button">Register Here!</a> <!-- This will link to the register page -->
-   <?php } ?>
+   <?php }//End IF ?>
 </div>

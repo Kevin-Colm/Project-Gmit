@@ -12,7 +12,7 @@
 if (isset($_SESSION['username'])) {
     //If it is set we can use the id to insert into their row in the database.
     $id = $_SESSION['id'];
-}
+}////End IF
 //SQL auery to check if the ID PK exists
 $query = "SELECT * FROM venue WHERE id = '$id'";
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -26,7 +26,7 @@ if ($count > 0) {
     $bio = $row['bio'];
     $rating = $row['rating'];
     mysqli_query($conn, $query) or die(mysqli_error($conn));
-}
+}//End IF
 ?>
 
 <!-- Post Content Column -->
@@ -39,24 +39,20 @@ if ($count > 0) {
     </p>
     <h2>Rating: <?php echo $rating ?></h2>
     <span class="stars"><?php echo $rating ?></span>
-
+    
     <hr>
-
     <!-- Preview Image -->
     <img class="img-fluid rounded" src="<?php echo $img ?>" alt="">
 
     <hr>
-
     <!-- Post Content -->
     <p class="lead"><?php echo $bio ?></p>
 
     <hr>
-
 </div>
 
 <!-- Sidebar Widgets Column -->
 <div class="col-md-4">
-
     <!-- Search Widget -->
     <div class="card my-4">
         <h5 class="card-header">Add/Update Event</h5>
@@ -64,15 +60,10 @@ if ($count > 0) {
             <div class="input-group">
                <a href="addEvent.php"> <button class="btn btn-primary btn-lg ">Add Event</button></a>
                <a href="updateEvent.php"> <button class="btn btn-primary btn-lg ">Update Event</button></a>
-            </div>
-            
-                
-              
-              
-           
+            </div> 
         </div>
     </div>
-
+    <!--Form to update the user profile image bio and name-->
     <div class="card my-4">
         <h5 class="card-header">Update Profile:</h5>
         <div class="card-body">

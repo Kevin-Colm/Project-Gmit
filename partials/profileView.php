@@ -28,7 +28,7 @@ $row1 = $result1->fetch_assoc();
 $name = $row1['name'];
 if($type=='venue'){
 $address = $row1['address'];
-}
+}//End if
 $image = $row1['image'];
 $bio = $row1['bio'];
 
@@ -44,16 +44,16 @@ $rating = $row1['rating'];
         ?>
     <h3 class="mt-4"><?php echo  $address ?></h3>
     <?php 
-    }
+    }//End IF
     if($rating==0){
                     echo '<h2>'.strtoupper($type).' Not rated yet.</h2>';  
-    } 
+    } //End IF
     else{?>
         <h2>Rating: <?php echo $rating ?></h2>
         <span class="stars"><?php echo $rating ?></span>
     <?php 
     
-    }?>
+    }//End else?>
     <hr>
 
     <!-- Preview Image -->
@@ -100,17 +100,16 @@ $rating = $row1['rating'];
                     <li> <?php 
                       if($type=="band"){
                           echo '<a href="singleEvent.php?id='.$eventId.'">'.$date." @".$venueName.'</a>';
-                                 }else{
-                                     echo '<a href="singleEvent.php?id='.$eventId.'">'.$date." @".$bandName.'</a>';
-                        } 
+                        }////End IF
+                        else{
+                              echo '<a href="singleEvent.php?id='.$eventId.'">'.$date." @".$bandName.'</a>';
+                            }//End else 
                         ?></li>
                         
                     
-                <?php } ?>
+                <?php }//End While ?>
             </ul>
         </div>
     </div>
-
-
 </div>
 
