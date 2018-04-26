@@ -10,7 +10,6 @@
  *
  */
 
-
 $eventId = $_GET['id'];
 $query = "select * from event where id = $eventId";
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -19,16 +18,13 @@ $row = $result->fetch_assoc();
 //date to only have rating for past events            
 $date = new DateTime($row['date']);
 $now = new DateTime();
-
+//Condition to check if the date is less than the current date.
 if($date < $now) {
     
 
     if (isset($_POST['rateBand'])) {
 
         $rating = $_POST['rating'];  //  Displaying Selected Value
-
-        
-
         $bandId = $row['bandId'];
         $query4 = "select userId from ratings where userId= $userId and id = $bandId and eventId= $eventId";
         $result4 = mysqli_query($conn, $query4) or die(mysqli_error($conn));
@@ -36,20 +32,22 @@ if($date < $now) {
 
         if ($num_rows > 0) {
             echo '<script>alert("You have already voted for this band");</script>';
-        } else {
+        }//End if
+        else {
+            //Insert the rating choseen by the user to the ratings table
         $query = "insert into ratings(id,rating,userId,eventId) values($bandId,$rating,$userId,$eventId)";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        //get average rating from the table the as alias can be used to update the rating of the band
         $query2 = "select round(avg(rating),2) as avg from ratings where id = $bandId";
-
         $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
         $row2 = $result2->fetch_assoc();
         $avg = $row2['avg'];
-
+        //give the average score to the band
         $query3 = "update band set rating=$avg where id = $bandId";
         mysqli_query($conn, $query3) or die(mysqli_error($conn));
-        }
+        }// End Else
 
-    }
+    }//End if
     ?>
     <!-- Sidebar Widgets Column -->
     <!-- Side Widget -->
@@ -57,6 +55,10 @@ if($date < $now) {
     <div class="card my-4">
         <h5 class="card-header">Rate Band</h5>
         <div class="card-body">
+            <!--Form to submit the rating of the band
+                The value is styled with css and jquery to have an image as the background
+                Depending on the value the user has submitted.
+            -->
             <form method="post">
                 <span class="rating" >
                     <input id="rating5" type="radio" name="rating" value="5" >
@@ -93,7 +95,8 @@ if($date < $now) {
        //if the number of returned rows are 1 or more the votre has already benn cast
         if ($num_rows1 > 0) {
             echo '<script>alert("You have already voted for this venue");</script>';
-        } else {
+        } //End if
+        else {
             //insert the rating to the rating table with the venueId and  user ID.
         $query = "insert into ratings(id,rating,userId,eventId) values($venueid,$rating,$userId,$eventId)";
         
@@ -105,27 +108,23 @@ if($date < $now) {
         $row2 = $result2->fetch_assoc();
         //Get average value from the ratings table.
         $avg = $row2['avg'];
-        //update the rating for the vunue.
+        //update the average rating for the vunue.
         $query3 = "update venue set rating=$avg where id = $venueId";
         mysqli_query($conn, $query3) or die(mysqli_error($conn));
-        }
+        }// End Else
         
-    }
+    }//End if
     ?>
-
-
-
-
-
-
-
-
 
     <!-- Sidebar Widgets Column -->
     <!-- Side Widget -->
     <div class="card my-4">
         <h5 class="card-header">Rate Venue</h5>
         <div class="card-body">
+            <!--Form to submit the rating of the venue
+                The value is styled with css and jquery to have an image as the background
+                Depending on the value the user has submitted.
+            -->
             <form method="post">
                 <span class="ratings" >
                     <input id="ratings5" type="radio" name="ratings" value="5" >
@@ -148,9 +147,6 @@ if($date < $now) {
     </div>
  
   
-
-
-  
 <?php
 include 'comment.php';
-}
+}//End if

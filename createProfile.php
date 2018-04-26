@@ -12,13 +12,11 @@ session_start();
 //Include database connecction
 include 'dbConnect.php';
 
-
-
 //Check if username is assigned in the sessiion
 if (isset($_SESSION['username'])) {
     //If it is set we can use the id to insert into their row in the database.
     $id = $_SESSION['id'];
-}
+}//End IF
 
 //Check if the submit post http request has been set
 if (isset($_POST['submit'])) {
@@ -31,45 +29,46 @@ if (isset($_POST['submit'])) {
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
+        // Check if image file is a actual image or fake image
     if (isset($_POST["submit"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if ($check !== false) {
             echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
-        } else {
+        } //End IF
+        else {
             echo "File is not an image.";
             $uploadOk = 0;
-        }
-    }
-// Check if file already exists
+        }//End Else
+    }//End IF
+        // Check if file already exists
     if (file_exists($target_file)) {
 
         $uploadOk = 0;
-    }
-// Check file size
+    }//End IF
+         // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
-    }
-// Allow certain file formats
+    }//End IF
+        // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
-    }
-// Check if $uploadOk is set to 0 by an error
+    }//End IF
+        // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-    } else {
+        // if everything is ok, try to upload file
+    } //End IF
+    else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-
-
             echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
-        } else {
+        }//End IF 
+        else {
             echo "Sorry, there was an error uploading your file.";
-        }
-    }
+        }//End Else
+    }//End Else
 
     //SQL auery to check if the ID PK exists
     $query = "SELECT * FROM userType WHERE id = '$id'";
@@ -87,18 +86,19 @@ if (isset($_POST['submit'])) {
                     . "address = COALESCE(NULLIF( '$address',''),address),"
                     . "bio = COALESCE(NULLIF( '$bio',''),bio) WHERE id=$id;";
             mysqli_query($conn, $query) or die(mysqli_error($conn));
-        } else{
+        } //End IF
+        else{
             //COALESCE sql function ignores an empty string if it is sent by the form.
             $query = "UPDATE $type SET name = COALESCE(NULLIF( '$name',''),name),"
                     . "image = COALESCE(NULLIF( '$target_file','Images/'),image),"
                     . "bio = COALESCE(NULLIF( '$bio',''),bio) WHERE id=$id;";
             
             
-            }
+            }//End Else
         mysqli_query($conn, $query) or die(mysqli_error($conn));
         header("location: profile.php");
-    }
-}
+    }//End IF
+}//End IF
                      
 
 

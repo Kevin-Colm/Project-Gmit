@@ -9,12 +9,13 @@
  */
 include 'partials/header.php';
 include 'partials/home_hero.php';
+//Check if the username and password are set in the form
 if (isset($_POST['username']) and isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     //GEt type from dropdown in form
     $type = $_POST['type'];
-    
+    //Prepared statment to prevent injection attacks
     $stmt = $conn->prepare("SELECT username FROM users WHERE username = ?");
     $stmt->bind_param('s', $username);
     $stmt->execute();
@@ -25,30 +26,31 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
          //If the login credentials doesn't match, he will be shown with an error message.
         echo "<h1 style='color:Red;'>The username Exists please choose another one.</h1>";
           
-    }
+    }//End if
     
         if(strlen($password) < 6){
 	echo "<h1 style='color:Red;'>Your password must be at least six characters in lenght.</h1>";
-        }
+        }//End if
         else{        
-         
+         //Prepared statment to prevent injection attacks
         $stmt = $conn->prepare("Insert into users (username, userPassword) VALUES(?, ?)");
         $stmt->bind_param('ss', $username,$password);
         $stmt->execute();
-        
-        
+        //Get the last id inserted to the users table for inserting the same id into the usertype table.        
         $last_id = $conn->insert_id;
+        //Multiple qiery to perform two inserts into band, venue or cusstomer table
+        //and usertype table.
         $queryType = "insert into $type(id)VALUES('$last_id');";
         $queryType .= "INSERT INTO userType (id,type)VALUES('$last_id','$type');";
         mysqli_multi_query($conn, $queryType) or die(mysqli_error($conn));
-      
+      //Redirect to the login page after the registration has been completed.
         header("Location: login.php");
         exit();
     
     $stmt->close();
-    }  
+    }//End else
    
-}
+}//End if
 
 $conn->close();
 ?>

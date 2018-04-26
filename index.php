@@ -8,7 +8,9 @@
  * Date: 18/02/2017
  *
  */
+//Start user session 
 session_start();
+//Include all partial files yuo need here.
 include 'partials/header.php';
 include 'partials/home_hero.php';
 include 'partials/giglist.php';

@@ -18,7 +18,7 @@ include 'partials/header.php';
 if (isset($_SESSION['username'])) {
     //If it is set we can use the id to insert into their row in the database.
     $id = $_SESSION['id'];
-}
+}//End IF
 
 if (isset($_POST["submitEvent"])) {
     //check if the form description has been submitted.
@@ -40,54 +40,52 @@ if (isset($_POST["submitEvent"])) {
         $query = "insert into event (venueId,description,date,name,bandId)values('$id','$description','$date','$name','$bandId')";
 
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-    }
+    }//End IF
     header("Location: index.php");
-}
+}//End IF
 
 ?>
+<!--Form for adding an event only a venue can see this page-->
 <div class="col-6">
-<div class="card my-4">
-    <h5 class="card-header">Add Event:</h5>
-    <div class="card-body">
-        <form method="POST">
-            <div class="form-group">
+    <div class="card my-4">
+        <h5 class="card-header">Add Event:</h5>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group">
 
-                <label for="event-title">Event Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required="true">
-              
-            </div>
-            <div class="form-group">
-                <label for="event-description">Event Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required="true"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="event-date">Event Date</label>
-                <input type="date" id="date" name="date" required="true">
-            </div>
-            <div class="form-group">
-                <label for="event-band">Select Band</label>
-                <select name="bands">
+                    <label for="event-title">Event Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required="true">
 
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Event Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" required="true"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="event-date">Event Date</label>
+                    <input type="date" id="date" name="date" required="true">
+                </div>
+                <div class="form-group">
+                    <label for="event-band">Select Band</label>
+                    <select name="bands">
+                        <?php
+                            //Populate the dropdown from the band table in the create event form from the database.
+                            $query = "SELECT * FROM `band`";
 
-                    <?php
-                    //Populate the dropdown in teh create event form from the database.
-                    $query = "SELECT * FROM `band`";
-
-                    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-                    while ($row = $result->fetch_assoc()) {
-                        $name = $row['name'];
-                        $bandId = $row['id'];
-
-                        echo "<option value='" . $bandId . "'>" . $name . "</option>";
-                    }
-                    ?>
-                </select>
-               </div>
-                <button type="submitEvent" name="submitEvent">Add Event</button>
-            
-        </form>
+                            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+                            while ($row = $result->fetch_assoc()) {
+                                $name = $row['name'];
+                                $bandId = $row['id'];
+                                //Put each band into the dropdown with their id as the value.
+                                echo "<option value='" . $bandId . "'>" . $name . "</option>";
+                            }//End While
+                        ?>
+                    </select>
+                   </div>
+                    <button type="submitEvent" name="submitEvent">Add Event</button>
+            </form>
+        </div>
     </div>
-</div>
 </div>    
     
 

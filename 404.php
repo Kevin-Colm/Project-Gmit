@@ -2,6 +2,7 @@
 
 include 'partials/header.php';
 ?>
+<!--404 page-->
 <div class="col-xl-7">
     <h1>whoops this page does not exist.....</h1>
 </div>
