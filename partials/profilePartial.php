@@ -8,7 +8,7 @@
  *
  */
 
-
+if(isset($_SESSION['id'])){
 //get sesssion id for access to tables pk.
 $id = $_SESSION['id'];
 //get the type of registered user to innput customised content to their page.
@@ -37,4 +37,6 @@ switch ($type) {
         break;
 }
 
- 
+}else{
+   header("Location: index.php");
+}
