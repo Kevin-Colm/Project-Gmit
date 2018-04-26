@@ -62,10 +62,14 @@ if ($count > 0) {
         <h5 class="card-header">Add/Update Event</h5>
         <div class="card-body">
             <div class="input-group">
-                <form method="get" action="addEvent.php">
-                    <button class="btn btn-primary btn-lg " type="submit" >Go!</button>
-                </form>
+               <a href="addEvent.php"> <button class="btn btn-primary btn-lg ">Add Event</button></a>
+               <a href="updateEvent.php"> <button class="btn btn-primary btn-lg ">Update Event</button></a>
             </div>
+            
+                
+              
+              
+           
         </div>
     </div>
 
